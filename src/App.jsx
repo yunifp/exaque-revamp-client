@@ -59,7 +59,7 @@ import Kategoriartikel from "./pages/admin/KategoriArtikel";
 import AdminKisahPelanggan from "./pages/admin/KisahPelanggan"; 
 import PermintaanPelanggan from "./pages/admin/PermintaanPelanggan";
 import KisahPelangganPreview from "./pages/admin/KisahPelangganPreview";
-import WhatsAppFloating from "./components/common/FloatingWA";
+import ChatbotFloating from "./components/common/ChatbotFloating";
 
 const ScrollToTop = ({ children }) => {
   const { pathname } = useLocation();
@@ -68,7 +68,7 @@ const ScrollToTop = ({ children }) => {
 };
 
 const MainLayout = () => (
-  <> <Navbar /> <main> <Outlet /> <WhatsAppFloating /> </main> <Footer /> </>
+  <> <Navbar /> <main> <Outlet /> <ChatbotFloating /> </main> <Footer /> </>
 );
 
 const ProtectedRoute = () => {

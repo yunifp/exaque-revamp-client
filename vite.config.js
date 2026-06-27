@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:3000", // Arahkan ke Backend Asli
+        target: "http://localhost:3000", 
         changeOrigin: true,
         secure: false,
         // MAGIC SCRIPT: Ini yang bikin cookie mau disimpan di localhost

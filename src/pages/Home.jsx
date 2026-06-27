@@ -6,6 +6,7 @@ import IntegratedSolutions from "../components/home/IntegratedSolutions";
 import IntegrationSection from "../components/home/IntegrationSection";
 import NewsSection from "../components/home/NewsSection";
 import CustomerStories from "../components/home/CustomerStories";
+import LinkedInInsights from "../components/home/LinkedInInsights";
 import HomeCTA from "../components/home/HomeCTA";
 
 function Home() {
@@ -19,6 +20,7 @@ function Home() {
       {/* <CustomerStories /> */}
       {/* <NewsSection /> */}
       </div>
+      <LinkedInInsights />
       <HomeCTA />
     </div>
   );
