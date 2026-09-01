@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams, Link } from "react-router-dom";
 import SearchHero from "../components/search/SearchHero";
 import Pagination from "../components/common/Pagination";
-import useApi from "../hooks/useApi"; 
+import useApi from "../hooks/UseApi"; 
 import { routes } from "../routes"; 
 
 const stripHtml = (html) => {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import DataTable from "../../components/admin/DataTable";
-import useApi from "../../hooks/useApi"; 
+import useApi from "../../hooks/UseApi"; 
 import ViewDataModal from "../../components/admin/ViewDataModal";
 
 const REQUEST_TYPES = [

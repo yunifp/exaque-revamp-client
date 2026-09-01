@@ -8,6 +8,7 @@ function NewsCard({ imageUrl, title, description, link }) {
         <img
           src={imageUrl}
           alt={title}
+          loading="lazy"
           className="w-full h-48 sm:h-52 md:h-56 object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>

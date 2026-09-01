@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
+import SEOMeta from "../components/common/SEOMeta";
 import { useLocation } from "react-router-dom";
 import heroImage from "../assets/hero-kontak.png";
 import Hero from "../components/common/Hero";
-import useApi from "../hooks/useApi";
+import useApi from "../hooks/UseApi";
 
 const CONTACT_OPTIONS = [
   {
@@ -117,6 +118,7 @@ const KontakPage = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEOMeta title="Hubungi Exaque" description="Punya pertanyaan tentang produk, harga, atau butuh bantuan teknis? Tim kami siap membantu Anda." url="https://exaque.com/kontak" />
       <Hero {...heroProps} />
 
       <div className="container mx-auto px-6 max-w-7xl py-12 lg:py-20">

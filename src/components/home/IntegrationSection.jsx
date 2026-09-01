@@ -71,7 +71,7 @@ function IntegrationSection() {
                 key={`row1-${index}`}
                 className="w-28 h-28 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex items-center justify-center p-5 border border-gray-50 hover:scale-105 transition"
               >
-                <img src={logo.img} alt={logo.name} className="w-full h-full object-contain" />
+                <img src={logo.img} alt={logo.name} className="w-full h-full object-contain" loading="lazy" />
               </div>
             ))}
           </div>
@@ -82,7 +82,7 @@ function IntegrationSection() {
                 key={`row2-${index}`}
                 className="w-28 h-28 bg-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.08)] flex items-center justify-center p-5 border border-gray-50 hover:scale-105 transition"
               >
-                <img src={logo.img} alt={logo.name} className="w-full h-full object-contain" />
+                <img src={logo.img} alt={logo.name} className="w-full h-full object-contain" loading="lazy" />
               </div>
             ))}
           </div>

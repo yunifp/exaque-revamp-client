@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import SEOMeta from "../components/common/SEOMeta";
 import Hero from "../components/common/Hero";
 import AboutIntro from "../components/tentang/AboutIntro";
 import WhyExaque from "../components/tentang/WhyExaque";
@@ -26,6 +27,7 @@ const TentangKami = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEOMeta title="Tentang Exaque" description="Pelajari bagaimana kami mentransformasi perjalanan pelanggan di sektor keuangan, telekomunikasi, dan layanan publik." url="https://exaque.com/tentang-exaque" />
       <Hero {...heroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
         <AboutIntro />

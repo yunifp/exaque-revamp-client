@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 import { useLocation } from "react-router-dom";
 import Hero from "../components/common/Hero";
 import BlogMainSection from "../components/informasi/BlogMainSection";
@@ -31,6 +32,7 @@ function BlogPage() {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEOMeta title={heroProps.title} description={heroProps.subtitle} url="https://exaque.com/blog" />
       <Hero {...heroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
         {/* Lempar authorId dan category ke komponen yang merender list artikel */}

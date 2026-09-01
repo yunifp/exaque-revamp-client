@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 import Hero from "../components/common/Hero";
 import Accordion from "../components/common/Accordion";
 import heroBg from "../assets/hero-faq.webp";
@@ -124,8 +125,26 @@ const Faq = () => {
     buttonJustify: "justify-center"
   };
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [...DATA_EXAQUE, ...DATA_PRODUK].map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  };
+
   return (
     <div className="bg-white min-h-screen">
+      <Helmet>
+        <script type="application/ld+json">
+          {JSON.stringify(faqSchema)}
+        </script>
+      </Helmet>
       <Hero {...heroProps} />
 
       <div className="container mx-auto px-6 py-20 max-w-6xl">

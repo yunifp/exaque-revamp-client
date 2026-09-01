@@ -35,6 +35,7 @@ function SolutionItem({ iconBlack, iconWhite, title, description }) {
             src={currentIcon}
             alt={`${title} icon`}
             className="w-7 h-7 md:w-8 md:h-8"
+            loading="lazy"
           />
         </div>
       </div>
@@ -114,6 +115,7 @@ function IntegratedSolutions() {
               src={solutionImage}
               alt="Solusi Terpadu Exaque"
               className="w-full h-auto rounded-lg"
+              loading="lazy"
             />
           </div>
         </div>

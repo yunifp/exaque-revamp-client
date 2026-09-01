@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import useApi from "../hooks/UseApi";
 import Hero from "../components/common/Hero";
 import heroBg from "../assets/hero-blog.webp";
@@ -169,8 +170,31 @@ const DetailBlog = () => {
   const authorQuotes = post.author_quotes || null;
   const initial = authorName.charAt(0).toUpperCase();
 
+  const articleSchema = post ? {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": post.title,
+    "image": [
+      getImageUrl(post.featured_image_url)
+    ],
+    "datePublished": post.published_at || post.createdAt,
+    "dateModified": post.updated_at || post.published_at || post.createdAt,
+    "author": [{
+        "@type": "Person",
+        "name": authorName,
+        "url": "https://exaque.com/blog"
+    }]
+  } : null;
+
   return (
     <div className="bg-primary min-h-screen">
+      {articleSchema && (
+        <Helmet>
+          <script type="application/ld+json">
+            {JSON.stringify(articleSchema)}
+          </script>
+        </Helmet>
+      )}
       <Hero {...heroProps} />
       
       <style>{`

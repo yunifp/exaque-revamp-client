@@ -7,6 +7,7 @@ function CustomerCard({ logo, title, description, onClick }) {
         src={logo}
         alt={title}
         className="h-20 w-auto mx-auto mb-6 object-contain"
+        loading="lazy"
       />
       <h3 className="text-xl font-bold text-gray-800 mb-2">{title}</h3>
       <p className="text-gray-600 text-sm">{description}</p>
