@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+// Helmet import removed
+import SEOMeta from "../components/common/SEOMeta";
 import Hero from "../components/common/Hero";
 import Accordion from "../components/common/Accordion";
 import heroBg from "../assets/hero-faq.webp";
@@ -140,11 +141,13 @@ const Faq = () => {
 
   return (
     <div className="bg-white min-h-screen">
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(faqSchema)}
-        </script>
-      </Helmet>
+      <SEOMeta 
+        title="PT Exaque Mandiri Makmur | FAQ" 
+        description="FAQ Exaque - Temukan jawaban atas pertanyaan yang paling sering diajukan seputar Qmatic." 
+        url="https://exaque.com/faq" 
+        exactTitle={true} 
+        schemas={faqSchema}
+      />
       <Hero {...heroProps} />
 
       <div className="container mx-auto px-6 py-20 max-w-6xl">

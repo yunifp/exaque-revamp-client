@@ -1,5 +1,5 @@
 import React from "react";
-
+import SEOMeta from "../components/common/SEOMeta";
 import Hero from "../components/common/Hero";
 import MobileTicketTeaser from "../components/mobileticket/MobileTicketTeaser";
 import MobileTicketFeature from "../components/mobileticket/MobileTicketFeature";
@@ -50,6 +50,12 @@ function MobileTicket() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta 
+        title="Mobile ticket - Buat pelanggan anda menunggu secara virtual dimana saja." 
+        description="Mobile Ticket memungkinkan pelanggan mengakses layanan Anda melalui perangkat seluler tanpa harus mengantre di lokasi." 
+        url="https://exaque.com/mobile-ticket" 
+        exactTitle={true} 
+      />
       <Hero {...MobileTicketHeroProps} />
       <div className="py-16 md:py-20 space-y-8 md:space-y-20">
         <MobileTicketTeaser />

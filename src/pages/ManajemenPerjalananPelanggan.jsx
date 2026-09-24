@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 
 import Hero from "../components/common/Hero";
 import ManajemenAntreanHeroImage from "../assets/hero-manajemen-perjalanan-pelanggan.webp";
@@ -23,6 +24,12 @@ function ManajemenPerjalananPelanggan() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta 
+        title="Manajemen Perjalanan Pelanggan - Exaque" 
+        description="Ciptakan pengalaman terbaik bagi pelanggan dan staf dari awal hingga akhir dengan solusi Customer Journey Management Qmatic." 
+        url="https://exaque.com/manajemen-perjalanan-pelanggan" 
+        exactTitle={true} 
+      />
       <Hero {...ManajemenAntreanHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <ManajemenPerjalananPelangganTeaser />

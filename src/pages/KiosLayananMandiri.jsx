@@ -1,6 +1,7 @@
 import React from "react";
 
 import Hero from "../components/common/Hero";
+import SEOMeta from "../components/common/SEOMeta";
 import productHeroImage from "../assets/hero-kios-layanan-mandiri.webp";
 import KiosLayananMandiriTeaser1 from "../components/kioslayananmandiri/KiosLayananMandiriTeaser-1";
 import KiosLayananMandiriStatsFeature1 from "../components/kioslayananmandiri/KiosLayananMandiriStatsFeature-1";
@@ -29,6 +30,12 @@ function PesanOtomatis() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta
+        title="Kios Layanan Mandiri Exaque"
+        description="Optimalkan aliran pelanggan, kurangi antrean dan waktu tunggu, serta tingkatkan pengalaman pelanggan dengan kios layanan mandiri untuk kedatangan dan check-in."
+        url="https://exaque.com/kios-layanan-mandiri"
+        exactTitle={true}
+      />
       <Hero {...productHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <KiosLayananMandiriTeaser1 />

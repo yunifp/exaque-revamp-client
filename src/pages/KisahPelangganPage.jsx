@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 import Hero from "../components/common/Hero";
 import StoryMainSection from "../components/informasi/storymainsection";
 import heroImage from "../assets/hero-kisah-pelanggan.webp"; 
@@ -20,6 +21,12 @@ function KisahPelangganPage() {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEOMeta 
+        title="Kisah Pelanggan Exaque" 
+        description="Jelajahi kisah pelanggan kami untuk mengetahui bagaimana kami telah membantu berbagai klien di Indonesia." 
+        url="https://exaque.com/kisah-pelanggan" 
+        exactTitle={true} 
+      />
       <Hero {...heroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <StoryMainSection />

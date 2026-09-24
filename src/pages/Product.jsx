@@ -1,5 +1,5 @@
 import React from "react";
-
+import SEOMeta from "../components/common/SEOMeta";
 import Hero from "../components/common/Hero";
 import ProductTeaser from "../components/product/ProductTeaser";
 import ProductFeature from "../components/product/ProductFeature";
@@ -25,6 +25,12 @@ function Product() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta 
+        title="Qmatic Orchestra 7 | Sistem Manajemen Antrian Enterprise" 
+        description="Terapkan struktur pada operasional Anda dengan solusi manajemen antrian untuk perusahaan." 
+        url="https://exaque.com/qmatic-orchestra" 
+        exactTitle={true} 
+      />
       <Hero {...productHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
         <ProductTeaser />

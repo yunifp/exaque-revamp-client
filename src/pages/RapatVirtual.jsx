@@ -1,6 +1,7 @@
 import React from "react";
 
 import Hero from "../components/common/Hero";
+import SEOMeta from "../components/common/SEOMeta";
 import RapatVirtualHeroImage from "../assets/hero-rapat-virtual.webp";
 
 import RapatVirtualTeaser from "../components/rapatvirtual/RapatVirtualTeaser";
@@ -30,6 +31,12 @@ function RapatVirtual() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta
+        title="Solusi rapat virtual Exaque"
+        description="Layani pelanggan secara jarak jauh dan sediakan alat-alat penting untuk konferensi video di lingkungan kerja hybrid Anda."
+        url="https://exaque.com/rapat-virtual"
+        exactTitle={true}
+      />
       <Hero {...RapatVirtualHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
         <RapatVirtualTeaser />

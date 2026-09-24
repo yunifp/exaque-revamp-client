@@ -26,6 +26,7 @@ import Faq from "./pages/Faq";
 import BlogPage from "./pages/BlogPage";
 import DetailBlog from "./pages/DetailBlog";
 import TentangKami from "./pages/TentangKami";
+import PanduanSistemManajemenAntrean from "./pages/PanduanSistemManajemenAntrean";
 import ArchivedRedirect from "./pages/ArchivedRedirect";
 
 import Solusi from "./pages/Solution";
@@ -130,6 +131,7 @@ const App = () => {
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<DetailBlog />} />
               <Route path="/faq" element={<Faq />} />
+              <Route path="/panduan-sistem-manajemen-antrean" element={<PanduanSistemManajemenAntrean />} />
               <Route path="/archived/*" element={<ArchivedRedirect />} />
             </Route>
               <Route path="*" element={<NotFoundPage />} />

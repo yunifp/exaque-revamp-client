@@ -6,6 +6,8 @@ import KontakPage from "./pages/KontakPage";
 import Faq from "./pages/Faq";
 import BlogPage from "./pages/BlogPage";
 import KisahPelanggan from "./pages/KisahPelangganPage";
+import PanduanSistemManajemenAntrean from "./pages/PanduanSistemManajemenAntrean";
+import ManagedServices from "./pages/ManagedServices";
 
 
 // --- Helper untuk membuat struktur route ---
@@ -40,6 +42,12 @@ export const routes = [
     description: "Pertanyaan yang sering diajukan seputar produk dan layanan.",
     keywords: "tanya jawab, help, bantuan, cara kerja"
   }),
+  createRoute("/panduan-sistem-manajemen-antrean", <PanduanSistemManajemenAntrean />, {
+    title: "Panduan Sistem Manajemen Antrian Exaque",
+    description: "Sistem manajemen antrian membantu mengurangi waktu tunggu dan mengelola alur pelanggan. Pelajari cara kerja, manfaat, dan solusi yang tepat untuk bisnis Anda.",
+    keywords: "panduan, sistem antrean, manajemen antrean, queue management"
+  }),
   createRoute("/blog", <BlogPage />, { title: "Blog", description: "Indeks artikel dan wawasan.", keywords: "blog, artikel" }),
   createRoute("/kisah-pelanggan", <KisahPelanggan  />, { title: "Kisah Pelanggan", description: "Daftar studi kasus klien.", keywords: "klien, portfolio" }),
+  createRoute("/managed-services", <ManagedServices />, { title: "Managed Services", description: "Menjaga layanan tetap berjalan tanpa bergantung pada perangkat yang menua.", keywords: "managed services, opex, layanan" }),
 ];

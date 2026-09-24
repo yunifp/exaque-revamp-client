@@ -1,5 +1,6 @@
 import React from "react";
 
+import SEOMeta from "../components/common/SEOMeta";
 import Hero from "../components/common/Hero";
 import ManajemenAntreanHeroImage from "../assets/hero-manajemen-antrean.webp";
 import ManajemenAntreanTeaser from "../components/manajemenantrean/ManajemenAntreanTeaser";
@@ -24,6 +25,12 @@ function ManajemenAntrean() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta 
+        title="Solusi Manajemen Antrian dan Sistem Antrian" 
+        description="Sistem manajemen antrean Exaque membantu menciptakan alur kerja yang lebih terstruktur, sekaligus memenuhi kebutuhan pelanggan, baik yang sederhana maupun kompleks." 
+        url="https://exaque.com/manajemen-antrean" 
+        exactTitle={true} 
+      />
       <Hero {...ManajemenAntreanHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <ManajemenAntreanTeaser />

@@ -10,7 +10,7 @@ import LinkedInInsights from "../components/home/LinkedInInsights";
 import HomeCTA from "../components/home/HomeCTA";
 
 import SEOMeta from "../components/common/SEOMeta";
-import { Helmet } from "react-helmet-async";
+// Helmet import removed as it's no longer used directly in this file
 
 function Home() {
   const organizationSchema = {
@@ -31,12 +31,13 @@ function Home() {
 
   return (
     <div className="bg-primary min-h-screen">
-      <Helmet>
-        <script type="application/ld+json">
-          {JSON.stringify(organizationSchema)}
-        </script>
-      </Helmet>
-      <SEOMeta title="Home" description="Layanan Berbasis AI dan Customer Journey Management dari Exaque." url="https://exaque.com" />
+      <SEOMeta 
+        title="Exaque - Sistem Manajemen Antrian & Solusi Perjalanan Pelanggan" 
+        description="PT Exaque Mandiri Makmur menyediakan solusi Customer Journey Management, Sistem Antrian, dan People Counting terkemuka di Indonesia." 
+        url="https://exaque.com" 
+        exactTitle={true} 
+        schemas={organizationSchema}
+      />
       <Hero />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <AboutTeaser />

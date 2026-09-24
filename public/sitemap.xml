@@ -1,38 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='utf-8'?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://exaque.com/</loc>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://exaque.com/tentang-exaque</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://exaque.com/kontak</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://exaque.com/solusi</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://exaque.com/blog</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://exaque.com/kisah-pelanggan</loc>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://exaque.com/faq</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://exaque.com/integrasi</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/qmatic-orchestra</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/kios-layanan-mandiri</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/manajemen-antrean</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/antrean-virtual</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/manajemen-jadwal-janji-temu</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/rapat-virtual</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/pesan-otomatis</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/umpan-balik</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/manajemen-pengunjung</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/tampilan-papan-informasi-digital</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/perencanaan-sumber-daya</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/power-bi</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/salesforce</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/panduan-sistem-manajemen-antrean</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/blog/mengapa-antrean-fisik-semakin-tidak-relevan-di-era-layanan-berbasis-ai</loc>
+  </url>
+  <url>
+    <loc>https://exaque.com/pengumuman-suara-otomatis</loc>
   </url>
 </urlset>

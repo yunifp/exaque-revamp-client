@@ -24,7 +24,7 @@ const MegaMenuSolusi = () => {
           Solusi-solusi
         </h3>
 
-        <div className="mt-4 grid grid-flow-col grid-rows-6 gap-x-6 gap-y-3">
+        <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-4">
           <MegaMenuItem
             to="/manajemen-antrean"
             title="Manajemen Antrean"
@@ -55,6 +55,11 @@ const MegaMenuSolusi = () => {
             title="Manajemen Pengunjung"
             description="Kelola aliran pengunjung Anda dengan sistem pendaftaran pengunjung yang dirancang untuk meningkatkan efisiensi operasional dan menjaga keamanan pengunjung serta staf."
           />
+          {/* <MegaMenuItem
+            to="/managed-services"
+            title="Managed Services"
+            description="Fokus pada pelayanan pelanggan, sementara kami menangani seluruh kompleksitas operasional perangkat antrean."
+          /> */}
         </div>
       </div>
     </div>

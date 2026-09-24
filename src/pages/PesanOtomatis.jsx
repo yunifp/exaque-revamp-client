@@ -1,5 +1,5 @@
 import React from "react";
-
+import SEOMeta from "../components/common/SEOMeta";
 import Hero from "../components/common/Hero";
 import productHeroImage from "../assets/hero-pesan-otomatis.webp";
 
@@ -25,6 +25,12 @@ function PesanOtomatis() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta 
+        title="Layanan Pesan Otomatis" 
+        description="Layanan pengiriman SMS yang andal dan efektif untuk mendekatkan pelanggan, didukung platform dengan penyiapan mudah dan biaya operasional efisien." 
+        url="https://exaque.com/pesan-otomatis" 
+        exactTitle={true} 
+      />
       <Hero {...productHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <PesanOtomatisNumberedTeaser />

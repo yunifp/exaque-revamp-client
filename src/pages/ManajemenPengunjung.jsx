@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 import Hero from "../components/common/Hero";
 import ManajemenPengunjungAccordion from "../components/manajemenpengunjung/ManajemenPengunjungAccordion";
 import heroBg from "../assets/hero-manajemen-pengunjung.webp";
@@ -19,6 +20,12 @@ const ManajemenPengunjung = () => {
 
   return (
     <div className="bg-white min-h-screen">
+      <SEOMeta 
+        title="Sistem manajemen pengunjung | Exaque" 
+        description="Tingkatkan alur pengunjung dengan sistem manajemen pengunjung Qmatic untuk meningkatkan efisiensi operasional dan menjaga keamanan pengunjung serta staf." 
+        url="https://exaque.com/manajemen-pengunjung" 
+        exactTitle={true} 
+      />
       <Hero {...heroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <ManajemenPengunjungTeaser />

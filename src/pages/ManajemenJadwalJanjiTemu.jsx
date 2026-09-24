@@ -1,5 +1,5 @@
 import React from "react";
-
+import SEOMeta from "../components/common/SEOMeta";
 import Hero from "../components/common/Hero";
 import ManajemenJadwalJanjiTemuHeroImage from "../assets/hero-manajemen-jadwal-janji-temu.webp";
 import ManajemenJadwalJanjiTemuTeaser from "../components/manajemenjadwaljanjitemu/ManajemenJadwalJanjiTemuTeaser";
@@ -23,6 +23,12 @@ function ManajemenJadwalJanjiTemu() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta 
+        title="Manajemen Jadwal Janji Temu - Exaque" 
+        description="Terapkan struktur pada operasional Anda dengan solusi manajemen antrian untuk perusahaan." 
+        url="https://exaque.com/manajemen-jadwal-janji-temu" 
+        exactTitle={true} 
+      />
       <Hero {...ManajemenJadwalJanjiTemuHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <ManajemenJadwalJanjiTemuTeaser />

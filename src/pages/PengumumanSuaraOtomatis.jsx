@@ -1,5 +1,6 @@
 import React from "react";
 import Hero from "../components/common/Hero";
+import SEOMeta from "../components/common/SEOMeta";
 import PengumumanSuaraOtomatisTeaser from "../components/pengumumansuaraotomatis/PengumumanSuaraOtomatisTeaser";
 import PengumumanSuaraOtomatisFeature from "../components/pengumumansuaraotomatis/PengumumanSuaraOtomatisFeature";
 import PengumumanSuaraOtomatisTeaserDown from "../components/pengumumansuaraotomatis/PengumumanSuaraOtomatisTeaserDown";
@@ -26,6 +27,12 @@ function PengumumanSuaraOtomatis() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta
+        title="Pengumuman Suara Otomatis Exaque"
+        description="Berkomunikasilah dengan jelas kepada semua orang di area tunggu Anda dengan pengumuman Suara Otomatis Exaque."
+        url="https://exaque.com/pengumuman-suara-otomatis"
+        exactTitle={true}
+      />
       <Hero {...PengumumanSuaraOtomatisHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <PengumumanSuaraOtomatisTeaser />

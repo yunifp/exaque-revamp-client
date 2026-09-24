@@ -1,5 +1,5 @@
 import React from "react";
-
+import SEOMeta from "../components/common/SEOMeta";
 import Hero from "../components/common/Hero";
 import AntreanVirtualHeroImage from "../assets/hero-antrean-virtual.webp";
 import AntrianVirtualTeaser from "../components/antreanvirtual/AntreanVirtualTeaser";
@@ -22,6 +22,12 @@ function AntreanVirtual() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta 
+        title="Sistem Antrian Virtual | Exaque" 
+        description="Kelola antrean, kurangi waktu tunggu, dan tingkatkan efisiensi layanan dengan sistem antrean virtual Qmatic." 
+        url="https://exaque.com/antrian-virtual" 
+        exactTitle={true} 
+      />
       <Hero {...ManajemenAntreanHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <AntrianVirtualTeaser />

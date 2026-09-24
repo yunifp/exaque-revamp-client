@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LogoRed from "../../assets/logo-red.webp";
 import LogoWhite from "../../assets/logo-white.webp";
 import MegaMenuProduct from "./dropdown/MegaMenuProduct";
@@ -242,6 +242,9 @@ const FloatingSearchBar = ({ isOpen, onClose }) => {
 };
 
 export default function Navbar() {
+  const location = useLocation();
+  const isManagedServicesPage = location.pathname === "/managed-services";
+
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -312,44 +315,46 @@ export default function Navbar() {
               </Link>
             </div>
 
-            <div className="hidden xl:flex xl:items-center xl:space-x-6">
-              <NavLinkDropdown
-                id="produk"
-                title="Produk"
-                openDropdown={openDropdown}
-                setOpenDropdown={setOpenDropdown}
-              >
-                <MegaMenuProduct />
-              </NavLinkDropdown>
+            {!isManagedServicesPage && (
+              <div className="hidden xl:flex xl:items-center xl:space-x-6">
+                <NavLinkDropdown
+                  id="produk"
+                  title="Produk"
+                  openDropdown={openDropdown}
+                  setOpenDropdown={setOpenDropdown}
+                >
+                  <MegaMenuProduct />
+                </NavLinkDropdown>
 
-              <NavLinkDropdown
-                id="solusi"
-                title="Solusi"
-                openDropdown={openDropdown}
-                setOpenDropdown={setOpenDropdown}
-              >
-                <MegaMenuSolusi />
-              </NavLinkDropdown>
+                <NavLinkDropdown
+                  id="solusi"
+                  title="Solusi"
+                  openDropdown={openDropdown}
+                  setOpenDropdown={setOpenDropdown}
+                >
+                  <MegaMenuSolusi />
+                </NavLinkDropdown>
 
-              <Link to="/integrasi" className="py-5 hover:text-accent-hover">
-                Integrasi
-              </Link>
-              {/* <Link
-                to="/kisah-pelanggan"
-                className="py-5 hover:text-accent-hover"
-              >
-                Kisah Pelanggan
-              </Link> */}
+                <Link to="/integrasi" className="py-5 hover:text-accent-hover">
+                  Integrasi
+                </Link>
+                {/* <Link
+                  to="/kisah-pelanggan"
+                  className="py-5 hover:text-accent-hover"
+                >
+                  Kisah Pelanggan
+                </Link> */}
 
-              <NavLinkDropdown
-                id="informasi"
-                title="Informasi"
-                openDropdown={openDropdown}
-                setOpenDropdown={setOpenDropdown}
-              >
-                <MegaMenuInformasi />
-              </NavLinkDropdown>
-            </div>
+                <NavLinkDropdown
+                  id="informasi"
+                  title="Informasi"
+                  openDropdown={openDropdown}
+                  setOpenDropdown={setOpenDropdown}
+                >
+                  <MegaMenuInformasi />
+                </NavLinkDropdown>
+              </div>
+            )}
 
             <div className="hidden xl:flex items-center space-x-4">
               <Link
@@ -407,186 +412,202 @@ export default function Navbar() {
           id="mobile-menu"
         >
           <div className="max-h-[calc(100vh-10rem)] px-4 overflow-y-auto">
-            <div className={`space-y-1 pt-2 sm:px-6 ${mobileMenuContentClass}`}>
-              <MobileNavLinkDropdown title="Produk" isScrolled={isScrolled}>
-                <Link
-                  onClick={handleMobileLinkClick}
-                  to="/qmatic-orchestra"
-                  className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                >
-                  Qmatic Orchestra
-                </Link>
-
-                <div>
-                  <MobileNavLinkDropdown
-                    title="Kapabilitas"
-                    isScrolled={isScrolled}
+            {!isManagedServicesPage && (
+              <div className={`space-y-1 pt-2 sm:px-6 ${mobileMenuContentClass}`}>
+                <MobileNavLinkDropdown title="Produk" isScrolled={isScrolled}>
+                  <Link
+                    onClick={handleMobileLinkClick}
+                    to="/qmatic-orchestra"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
                   >
-                    <Link
-                      onClick={handleMobileLinkClick}
-                      to="/janji-temu"
-                      className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                    >
-                      Jadwal Temu Digital
-                    </Link>
-                    <Link
-                      onClick={handleMobileLinkClick}
-                      to="/perencanaan-sumber-daya"
-                      className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                    >
-                      Perencanaan Sumber Daya
-                    </Link>
-                    <Link
-                      onClick={handleMobileLinkClick}
-                      to="/mobile-ticket"
-                      className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                    >
-                      Mobile Ticket
-                    </Link>
-                    <Link
-                      onClick={handleMobileLinkClick}
-                      to="/umpan-balik"
-                      className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                    >
-                      Umpan Balik Pelanggan
-                    </Link>
-                    <Link
-                      onClick={handleMobileLinkClick}
-                      to="/business-intelligence"
-                      className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                    >
-                      Business Intelligence
-                    </Link>
-                    <Link
-                      onClick={handleMobileLinkClick}
-                      to="/pesan-otomatis"
-                      className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                    >
-                      Pesan Otomatis
-                    </Link>
-                    <Link
-                      onClick={handleMobileLinkClick}
-                      to="/keamanan-sistem"
-                      className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                    >
-                      Keamanan Sistem
-                    </Link>
-                    <Link
-                      onClick={handleMobileLinkClick}
-                      to="/kios-layanan-mandiri"
-                      className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                    >
-                      Kios Layanan Mandiri
-                    </Link>
-                    <Link
-                      onClick={handleMobileLinkClick}
-                      to="/tampilan-papan-informasi-digital"
-                      className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                    >
-                      Tampilan & Papan Informasi Digital
-                    </Link>
-                    <Link
-                      onClick={handleMobileLinkClick}
-                      to="/pengumuman-suara-otomatis"
-                      className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                    >
-                      Pengumuman Suara Otomatis
-                    </Link>
-                    <Link
-                      onClick={handleMobileLinkClick}
-                      to="/dukungan-perangkat-lunak"
-                      className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                    >
-                      Dukungan Perangkat Lunak
-                    </Link>
-                  </MobileNavLinkDropdown>
-                </div>
-              </MobileNavLinkDropdown>
+                    Qmatic Orchestra
+                  </Link>
 
-              <MobileNavLinkDropdown title="Solusi" isScrolled={isScrolled}>
-                <Link
-                  onClick={handleMobileLinkClick}
-                  to="/manajemen-antrean"
-                  className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                >
-                  Manajemen Antrean
-                </Link>
-                <Link
-                  onClick={handleMobileLinkClick}
-                  to="/manajemen-perjalanan-pelanggan"
-                  className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                >
-                  Manajemen Perjalanan Pelanggan
-                </Link>
-                <Link
-                  onClick={handleMobileLinkClick}
-                  to="/antrean-virtual"
-                  className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                >
-                  Antrean Virtual
-                </Link>
-                <Link
-                  onClick={handleMobileLinkClick}
-                  to="/manajemen-jadwal-janji-temu"
-                  className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                >
-                  Manajemen Jadwal Janji Temu
-                </Link>
-                <Link
-                  onClick={handleMobileLinkClick}
-                  to="/rapat-virtual"
-                  className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                >
-                  Rapat Virtual
-                </Link>
-                <Link
-                  onClick={handleMobileLinkClick}
-                  to="/manajemen-pengunjung"
-                  className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                >
-                  Manajemen Pengunjung
-                </Link>
-              </MobileNavLinkDropdown>
+                  <div>
+                    <MobileNavLinkDropdown
+                      title="Kapabilitas"
+                      isScrolled={isScrolled}
+                    >
+                      <Link
+                        onClick={handleMobileLinkClick}
+                        to="/janji-temu"
+                        className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                      >
+                        Jadwal Temu Digital
+                      </Link>
+                      <Link
+                        onClick={handleMobileLinkClick}
+                        to="/perencanaan-sumber-daya"
+                        className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                      >
+                        Perencanaan Sumber Daya
+                      </Link>
+                      <Link
+                        onClick={handleMobileLinkClick}
+                        to="/mobile-ticket"
+                        className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                      >
+                        Mobile Ticket
+                      </Link>
+                      <Link
+                        onClick={handleMobileLinkClick}
+                        to="/umpan-balik"
+                        className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                      >
+                        Umpan Balik Pelanggan
+                      </Link>
+                      <Link
+                        onClick={handleMobileLinkClick}
+                        to="/business-intelligence"
+                        className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                      >
+                        Business Intelligence
+                      </Link>
+                      <Link
+                        onClick={handleMobileLinkClick}
+                        to="/pesan-otomatis"
+                        className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                      >
+                        Pesan Otomatis
+                      </Link>
+                      <Link
+                        onClick={handleMobileLinkClick}
+                        to="/keamanan-sistem"
+                        className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                      >
+                        Keamanan Sistem
+                      </Link>
+                      <Link
+                        onClick={handleMobileLinkClick}
+                        to="/kios-layanan-mandiri"
+                        className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                      >
+                        Kios Layanan Mandiri
+                      </Link>
+                      <Link
+                        onClick={handleMobileLinkClick}
+                        to="/tampilan-papan-informasi-digital"
+                        className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                      >
+                        Tampilan & Papan Informasi Digital
+                      </Link>
+                      <Link
+                        onClick={handleMobileLinkClick}
+                        to="/pengumuman-suara-otomatis"
+                        className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                      >
+                        Pengumuman Suara Otomatis
+                      </Link>
+                      <Link
+                        onClick={handleMobileLinkClick}
+                        to="/dukungan-perangkat-lunak"
+                        className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                      >
+                        Dukungan Perangkat Lunak
+                      </Link>
+                    </MobileNavLinkDropdown>
+                  </div>
+                </MobileNavLinkDropdown>
 
-              <Link
-                onClick={handleMobileLinkClick}
-                to="/integrasi"
-                className="block py-3 font-medium px-4 border-b border-subtle hover:border-l-4 hover:border-b-subtle hover:border-accent focus:border-l-4 focus:border-accent focus:border-b-subtle focus:outline-none"
-              >
-                Integrasi
-              </Link>
-              {/* <Link
-                onClick={handleMobileLinkClick}
-                to="/kisah-pelanggan"
-                className="block py-3 font-medium px-4 border-b border-subtle hover:border-l-4 hover:border-b-subtle hover:border-accent focus:border-l-4 focus:border-accent focus:border-b-subtle focus:outline-none"
-              >
-                Kisah Pelanggan
-              </Link> */}
+                <MobileNavLinkDropdown title="Solusi" isScrolled={isScrolled}>
+                  <Link
+                    onClick={handleMobileLinkClick}
+                    to="/manajemen-antrean"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  >
+                    Manajemen Antrean
+                  </Link>
+                  <Link
+                    onClick={handleMobileLinkClick}
+                    to="/manajemen-perjalanan-pelanggan"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  >
+                    Manajemen Perjalanan Pelanggan
+                  </Link>
+                  <Link
+                    onClick={handleMobileLinkClick}
+                    to="/antrean-virtual"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  >
+                    Antrean Virtual
+                  </Link>
+                  <Link
+                    onClick={handleMobileLinkClick}
+                    to="/manajemen-jadwal-janji-temu"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  >
+                    Manajemen Jadwal Janji Temu
+                  </Link>
+                  <Link
+                    onClick={handleMobileLinkClick}
+                    to="/rapat-virtual"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  >
+                    Rapat Virtual
+                  </Link>
+                  <Link
+                    onClick={handleMobileLinkClick}
+                    to="/manajemen-pengunjung"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  >
+                    Manajemen Pengunjung
+                  </Link>
+                  {/* <Link
+                    onClick={handleMobileLinkClick}
+                    to="/managed-services"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  >
+                    Managed Services
+                  </Link> */}
+                </MobileNavLinkDropdown>
 
-              <MobileNavLinkDropdown title="Informasi" isScrolled={isScrolled}>
                 <Link
                   onClick={handleMobileLinkClick}
-                  to="/tentang-exaque"
-                  className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  to="/integrasi"
+                  className="block py-3 font-medium px-4 border-b border-subtle hover:border-l-4 hover:border-b-subtle hover:border-accent focus:border-l-4 focus:border-accent focus:border-b-subtle focus:outline-none"
                 >
-                  Tentang Exaque
+                  Integrasi
                 </Link>
                 <Link
                   onClick={handleMobileLinkClick}
-                  to="/blog"
-                  className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  to="/kisah-pelanggan"
+                  className="block py-3 font-medium px-4 border-b border-subtle hover:border-l-4 hover:border-b-subtle hover:border-accent focus:border-l-4 focus:border-accent focus:border-b-subtle focus:outline-none"
                 >
-                  Blog
+                  Kisah Pelanggan
                 </Link>
-                <Link
-                  onClick={handleMobileLinkClick}
-                  to="/faq"
-                  className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
-                >
-                  FAQ
-                </Link>
-              </MobileNavLinkDropdown>
-            </div>
+
+                <MobileNavLinkDropdown title="Informasi" isScrolled={isScrolled}>
+                  <Link
+                    onClick={handleMobileLinkClick}
+                    to="/tentang-exaque"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  >
+                    Tentang Exaque
+                  </Link>
+                  <Link
+                    onClick={handleMobileLinkClick}
+                    to="/blog"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  >
+                    Blog
+                  </Link>
+                  <Link
+                    onClick={handleMobileLinkClick}
+                    to="/faq"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  >
+                    FAQ
+                  </Link>
+                  <Link
+                    onClick={handleMobileLinkClick}
+                    to="/panduan-sistem-manajemen-antrean"
+                    className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
+                  >
+                    Panduan Sistem Antrean
+                  </Link>
+                </MobileNavLinkDropdown>
+              </div>
+            )}
 
             <div className="space-y-3 p-4">
               <Link
