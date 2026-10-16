@@ -2,6 +2,7 @@ import React from "react";
 
 import Hero from "../components/home/Hero";
 import AboutTeaser from "../components/home/AboutTeaser";
+import ManagedServiceTeaser from "../components/home/ManagedServiceTeaser";
 import IntegratedSolutions from "../components/home/IntegratedSolutions";
 import IntegrationSection from "../components/home/IntegrationSection";
 import NewsSection from "../components/home/NewsSection";
@@ -39,6 +40,7 @@ function Home() {
         schemas={organizationSchema}
       />
       <Hero />
+      <ManagedServiceTeaser />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <AboutTeaser />
       <IntegratedSolutions />

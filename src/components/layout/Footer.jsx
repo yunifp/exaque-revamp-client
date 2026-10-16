@@ -80,6 +80,7 @@ const FooterLink = ({ to, children }) => (
 );
 
 function Footer() {
+  return null;
   return (
     <footer className="bg-primary mx-auto pt-16 pb-8">
       <div className="container mx-auto px-6">

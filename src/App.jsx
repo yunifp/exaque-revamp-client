@@ -28,6 +28,7 @@ import DetailBlog from "./pages/DetailBlog";
 import TentangKami from "./pages/TentangKami";
 import PanduanSistemManajemenAntrean from "./pages/PanduanSistemManajemenAntrean";
 import ArchivedRedirect from "./pages/ArchivedRedirect";
+import ManagedServices from "./pages/ManagedServices";
 
 import Solusi from "./pages/Solution";
 import ManajemenAntrean from "./pages/ManajemenAntrean";
@@ -64,14 +65,51 @@ import KisahPelangganPreview from "./pages/admin/KisahPelangganPreview";
 import ChatbotFloating from "./components/common/ChatbotFloating";
 
 const ScrollToTop = ({ children }) => {
-  const { pathname } = useLocation();
-  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const targetId = hash.replace("#", "");
+      const scrollToTarget = () => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          const navOffset = 70;
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+          window.scrollTo({
+            top: Math.max(0, offsetPosition),
+            behavior: "smooth",
+          });
+          return true;
+        }
+        return false;
+      };
+
+      if (!scrollToTarget()) {
+        const timer1 = setTimeout(scrollToTarget, 100);
+        const timer2 = setTimeout(scrollToTarget, 350);
+        return () => {
+          clearTimeout(timer1);
+          clearTimeout(timer2);
+        };
+      }
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
+
   return children;
 };
 
-const MainLayout = () => (
-  <> <Navbar /> <main> <Outlet /> <ChatbotFloating /> </main> <Footer /> </>
-);
+const MainLayout = () => {
+  const { pathname } = useLocation();
+  const hideFooter =
+    pathname === "/exaque-managed-service" ||
+    pathname === "/exaque-managed-branch-performance";
+  return (
+    <> <Navbar /> <main> <Outlet /> <ChatbotFloating /> </main> {!hideFooter && <Footer />} </>
+  );
+};
 
 const ProtectedRoute = () => {
   const { user } = useAuth();
@@ -133,6 +171,8 @@ const App = () => {
               <Route path="/faq" element={<Faq />} />
               <Route path="/panduan-sistem-manajemen-antrean" element={<PanduanSistemManajemenAntrean />} />
               <Route path="/archived/*" element={<ArchivedRedirect />} />
+              <Route path="/exaque-managed-service" element={<ManagedServices />} />
+              <Route path="/exaque-managed-branch-performance" element={<ManagedServices />} />
             </Route>
               <Route path="*" element={<NotFoundPage />} />
 

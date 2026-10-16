@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import { FaRobot, FaTimes, FaPaperPlane, FaSync } from "react-icons/fa";
+import { FaTimes, FaPaperPlane, FaSync } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
+import agentImg from "../../assets/agent2.png";
 
 const ChatbotFloating = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -189,10 +190,14 @@ const ChatbotFloating = () => {
       {/* Floating Button */}
       <button
         onClick={toggleChat}
-        className={`fixed bottom-24 right-6 bg-accent text-white w-14 h-14 rounded-full shadow-lg flex justify-center items-center hover:bg-accent-hover transition z-50 ${isOpen ? 'hidden' : ''}`}
+        className={`fixed bottom-0 right-0 w-44 h-44 md:w-56 md:h-56 lg:w-72 lg:h-72 flex justify-center items-end hover:scale-105 transition-transform z-50 origin-bottom-right group ${isOpen ? 'hidden' : ''}`}
         aria-label="Tanya CORA"
       >
-        <FaRobot className="w-8 h-8" />
+        {/* Chat Bubble Pointer */}
+        <div className="absolute top-4 -left-4 md:top-8 md:-left-2 lg:top-12 lg:left-4 bg-white text-accent font-bold text-xs md:text-sm px-4 py-2 rounded-2xl rounded-br-none shadow-[0_4px_15px_rgba(0,0,0,0.15)] border border-gray-100 animate-bounce whitespace-nowrap group-hover:bg-gray-50 transition-colors">
+          Tanya CORA 👋
+        </div>
+        <img src={agentImg} alt="Agent" className="w-full h-full object-contain object-bottom drop-shadow-2xl" />
       </button>
 
       {/* Chat Modal */}

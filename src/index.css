@@ -7,7 +7,7 @@
   --color-secondary: #E4E4E4;
   --color-antiflash-white: #f2f2f2;
   --color-gray: #444444;
-  --color-gray2: ##E9E9E9;
+  --color-gray2: #E9E9E9;
   --color-accent: #a9023a;
   --color-accent-hover: #8a012e;
   --color-accent-light: #A9023A26;
@@ -66,4 +66,73 @@ html {
 #curator-feed-default-feed-layout .crt-post-c {
   border-radius: 1rem !important;
   overflow: hidden !important;
+}
+.ms{position:relative;overflow:hidden;background:#fff}
+.ms-inner{max-width:1200px;margin:0 auto;padding:84px 32px;display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#A9023A;margin-bottom:22px}
+.eyebrow::before{content:"";width:28px;height:2px;background:#A9023A}
+.ms h2{font-size:clamp(30px,3.8vw,44px);line-height:1.15;font-weight:700;letter-spacing:-.01em;margin-bottom:22px;color:#1f1f24}
+.ms h2 span{color:#A9023A}
+.ms .sub{font-size:clamp(16px,1.5vw,17.5px);line-height:1.75;color:#5a5a63;max-width:540px;margin-bottom:36px}
+.ctas{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.cta{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:600;font-size:16px;line-height:1;padding:16px 28px;border-radius:999px;transition:transform .2s,box-shadow .2s,background .2s;white-space:nowrap}
+.cta svg{width:19px;height:19px;flex:none}
+.cta.contact{overflow:hidden;color:#fff;font-weight:700;padding:18px 34px;background:linear-gradient(135deg,#C8104F 0%,#A9023A 55%,#7d012b 100%);border:0;box-shadow:0 12px 28px rgba(169,2,58,.38),0 0 0 4px rgba(169,2,58,.12);animation:ring 2.8s ease-out infinite}
+.cta.contact::after{content:"";position:absolute;top:0;left:-70%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);transform:skewX(-20deg);animation:shine 3.4s ease-in-out infinite}
+.cta.contact:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(169,2,58,.5),0 0 0 6px rgba(169,2,58,.16)}
+.cta.learn{color:#A9023A;background:#fff;border:2px solid #E3B7C6;padding:14px 26px}
+.cta.learn:hover{background:#fbeef2;border-color:#A9023A;transform:translateY(-2px)}
+.cta.learn svg{transition:transform .2s}.cta.learn:hover svg{transform:translateX(4px)}
+@keyframes shine{0%,55%{left:-70%}100%{left:130%}}
+@keyframes ring{0%{box-shadow:0 12px 28px rgba(169,2,58,.38),0 0 0 0 rgba(169,2,58,.35)}70%,100%{box-shadow:0 12px 28px rgba(169,2,58,.38),0 0 0 14px rgba(169,2,58,0)}}
+.vwrap{position:relative;width:100%;max-width:620px;margin-left:auto}
+.vwrap::before{content:"";position:absolute;top:18px;right:-18px;bottom:-18px;left:18px;border-radius:28px;background:#fbeef2}
+.visual{position:relative;border-radius:28px;overflow:hidden;box-shadow:0 24px 50px rgba(120,0,40,.28)}
+.hexviz{display:block;width:100%;height:auto}
+
+.hexo{animation:dash 14s linear infinite}
+.lk{animation:flow 1.4s linear infinite}
+.tw{animation:tw 3.2s ease-in-out infinite}
+.bk{animation:bk 9s ease-in-out infinite alternate}
+.gridmove{animation:drift 9s linear infinite}
+.glow{transform-box:fill-box;transform-origin:center;animation:glow 5s ease-in-out infinite alternate}
+.orbit{animation:flow 8s linear infinite}
+.pop,.float,.gear,.pillglow{transform-box:fill-box;transform-origin:center}
+.pop{animation:pop .8s cubic-bezier(.2,.9,.3,1.25) var(--d,0s) backwards}
+.float{animation:float 6s ease-in-out var(--fd,0s) infinite alternate}
+.gear{animation:spin 18s linear infinite}
+.pillglow{animation:pg 2.4s ease-in-out infinite alternate}
+.tap{animation:tap 2.4s ease-in-out infinite}
+.pulse{animation:pulse 3.8s ease-out infinite}.pulse.p2{animation-delay:1.9s}
+.touchglow{transform-box:fill-box;transform-origin:center;animation:tg 2.4s ease-in-out infinite}
+.trip{transform-box:fill-box;transform-origin:center;animation:trip 2.4s ease-out infinite}.trip.t2{animation-delay:.5s}
+@keyframes dash{to{stroke-dashoffset:-130}}
+@keyframes flow{to{stroke-dashoffset:-24}}
+@keyframes tw{0%,100%{opacity:.1}50%{opacity:.9}}
+@keyframes bk{from{transform:translate(-8px,6px)}to{transform:translate(10px,-8px)}}
+@keyframes drift{to{transform:translate(36px,36px)}}
+@keyframes glow{from{transform:scale(.9);opacity:.7}to{transform:scale(1.08);opacity:1}}
+@keyframes pop{from{opacity:0;transform:scale(.5)}to{opacity:1;transform:scale(1)}}
+@keyframes float{from{transform:translateY(-5px)}to{transform:translateY(6px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes pg{from{opacity:.35}to{opacity:1}}
+@keyframes tap{0%,30%{transform:translateY(0)}50%{transform:translateY(-12px)}70%,100%{transform:translateY(0)}}
+@keyframes tg{0%,30%,100%{opacity:.4;transform:scale(.8)}50%{opacity:1;transform:scale(1.25)}}
+@keyframes trip{0%,40%{opacity:0;transform:scale(.6)}50%{opacity:.9;transform:scale(.8)}100%{opacity:0;transform:scale(4)}}
+@keyframes pulse{0%{opacity:.7;transform:translate(430px,300px) scale(1)}100%{opacity:0;transform:translate(430px,300px) scale(2)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.pulse,.trip{opacity:0}}
+
+@media(max-width:940px){
+ .ms-inner{grid-template-columns:1fr;gap:44px;padding:60px 22px}
+ .vwrap{margin:0 auto;max-width:560px}
+ .vwrap::before{top:12px;right:-10px;bottom:-12px;left:10px}
+}
+@media(max-width:520px){.ctas{flex-direction:column;align-items:stretch}.cta{width:100%}}
+@media(prefers-reduced-motion:reduce){.cta.contact,.cta.contact::after{animation:none}}
+
+/* Logo 10th Lottie Animation Container */
+.logo-10th-container svg {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }

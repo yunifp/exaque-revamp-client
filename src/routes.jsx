@@ -49,5 +49,14 @@ export const routes = [
   }),
   createRoute("/blog", <BlogPage />, { title: "Blog", description: "Indeks artikel dan wawasan.", keywords: "blog, artikel" }),
   createRoute("/kisah-pelanggan", <KisahPelanggan  />, { title: "Kisah Pelanggan", description: "Daftar studi kasus klien.", keywords: "klien, portfolio" }),
-  createRoute("/managed-services", <ManagedServices />, { title: "Managed Services", description: "Menjaga layanan tetap berjalan tanpa bergantung pada perangkat yang menua.", keywords: "managed services, opex, layanan" }),
+  createRoute("/exaque-managed-branch-performance", <ManagedServices />, {
+    title: "Exaque Managed Branch Performance",
+    description: "Pantau performa dan kualitas layanan setiap cabang melalui data serta laporan berkala dengan exaque managed branch performance.",
+    keywords: "managed service, branch performance, perbankan, sla, csat"
+  }),
+  createRoute("/exaque-managed-service", <ManagedServices />, {
+    title: "Exaque Managed Branch Performance",
+    description: "Pantau performa dan kualitas layanan setiap cabang melalui data serta laporan berkala dengan exaque managed branch performance.",
+    keywords: "managed service, branch performance, perbankan, sla, csat"
+  }),
 ];
