@@ -51,15 +51,10 @@ const KisahPelangganPreview = () => {
         }
 
         /* Heading Style */
-        #preview-kisah-wrapper h1, 
-        #preview-kisah-wrapper h2, 
-        #preview-kisah-wrapper h3, 
-        #preview-kisah-wrapper h4 {
-          margin-top: 40px !important;
-          margin-bottom: 16px !important;
-          font-weight: 700;
-          color: #111827;
-        }
+        #preview-kisah-wrapper h1 { font-size: 2.125rem !important; line-height: 1.3 !important; margin-top: 36px !important; margin-bottom: 16px !important; font-weight: 800 !important; color: #111827 !important; }
+        #preview-kisah-wrapper h2 { font-size: 1.625rem !important; line-height: 1.35 !important; margin-top: 32px !important; margin-bottom: 14px !important; font-weight: 700 !important; color: #111827 !important; }
+        #preview-kisah-wrapper h3 { font-size: 1.35rem !important; line-height: 1.4 !important; margin-top: 28px !important; margin-bottom: 12px !important; font-weight: 600 !important; color: #1f2937 !important; }
+        #preview-kisah-wrapper h4 { font-size: 1.15rem !important; line-height: 1.45 !important; margin-top: 24px !important; margin-bottom: 10px !important; font-weight: 600 !important; color: #374151 !important; }
 
         /* List / Bullet Points */
         #preview-kisah-wrapper ul {

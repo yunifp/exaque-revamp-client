@@ -40,12 +40,17 @@ const ArtikelPreview = () => {
     <div className="p-8 min-h-screen bg-primary">
       <style>{`
         #preview-content-wrapper { color: #374151; font-size: 1.125rem; line-height: 1.8; text-align: left !important; }
-        #preview-content-wrapper p { margin-bottom: 24px !important; display: block; }
-        #preview-content-wrapper h1, #preview-content-wrapper h2, #preview-content-wrapper h3, #preview-content-wrapper h4 { margin-top: 40px !important; margin-bottom: 16px !important; font-weight: 700; color: #111827; }
-        #preview-content-wrapper ul { list-style: disc inside !important; margin-bottom: 24px !important; padding-left: 16px !important; }
-        #preview-content-wrapper ol { list-style: decimal inside !important; margin-bottom: 24px !important; padding-left: 16px !important; }
-        #preview-content-wrapper li { margin-bottom: 8px !important; }
-        #preview-content-wrapper img { max-width: 100% !important; height: auto !important; border-radius: 8px; margin: 32px auto !important; display: block; }
+        #preview-content-wrapper p { margin-bottom: 20px !important; line-height: 1.8 !important; display: block; }
+        #preview-content-wrapper h1 { font-size: 2.125rem !important; line-height: 1.3 !important; margin-top: 36px !important; margin-bottom: 16px !important; font-weight: 800 !important; color: #111827 !important; }
+        #preview-content-wrapper h2 { font-size: 1.625rem !important; line-height: 1.35 !important; margin-top: 32px !important; margin-bottom: 14px !important; font-weight: 700 !important; color: #111827 !important; }
+        #preview-content-wrapper h3 { font-size: 1.35rem !important; line-height: 1.4 !important; margin-top: 28px !important; margin-bottom: 12px !important; font-weight: 600 !important; color: #1f2937 !important; }
+        #preview-content-wrapper h4 { font-size: 1.15rem !important; line-height: 1.45 !important; margin-top: 24px !important; margin-bottom: 10px !important; font-weight: 600 !important; color: #374151 !important; }
+        #preview-content-wrapper blockquote { border-left: 4px solid #A9023A !important; background: #fdf2f4 !important; padding: 14px 20px !important; margin: 24px 0 !important; border-radius: 0 8px 8px 0 !important; font-style: italic !important; color: #4b5563 !important; }
+        #preview-content-wrapper ul, #preview-content-wrapper ol { margin-bottom: 20px !important; padding-left: 20px !important; }
+        #preview-content-wrapper ul { list-style: disc inside !important; }
+        #preview-content-wrapper ol { list-style: decimal inside !important; }
+        #preview-content-wrapper li { margin-bottom: 8px !important; line-height: 1.7 !important; }
+        #preview-content-wrapper img { max-width: 100% !important; height: auto !important; border-radius: 12px !important; margin: 28px auto !important; display: block !important; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important; border: 1px solid #f3f4f6 !important; }
         #preview-content-wrapper a { color: #a60046; text-decoration: underline; font-weight: 500; }
         #preview-content-wrapper * { word-break: normal !important; overflow-wrap: break-word; hyphens: none !important; text-align: left !important; }
       `}</style>

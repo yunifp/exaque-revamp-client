@@ -47,6 +47,7 @@ const Login = () => {
             <input
               type="email"
               value={email}
+              autoComplete="username"
               onChange={(e) => setEmail(e.target.value)}
               className="w-full p-3 rounded-lg border border-subtle focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
               placeholder="email"
@@ -59,6 +60,7 @@ const Login = () => {
             <input
               type="password"
               value={password}
+              autoComplete="current-password"
               onChange={(e) => setPassword(e.target.value)}
               className="w-full p-3 rounded-lg border border-subtle focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
               placeholder="••••••••"

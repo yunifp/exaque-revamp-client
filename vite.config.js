@@ -10,15 +10,16 @@ export default defineConfig({
         target: "https://apirevamp.exaque.com", 
         changeOrigin: true,
         secure: false,
-        cookieDomainRewrite: "localhost",
+        cookieDomainRewrite: { "*": "" },
         configure: (proxy, _options) => {
           proxy.on("proxyRes", (proxyRes) => {
             const cookies = proxyRes.headers["set-cookie"];
             if (cookies) {
               proxyRes.headers["set-cookie"] = cookies.map((c) =>
                 c
+                  .replace(/;\s*Domain=[^;]+/gi, "")
                   .replace(/;\s*Secure/gi, "")
-                  .replace(/SameSite=Strict/gi, "SameSite=Lax")
+                  .replace(/SameSite=(Strict|None)/gi, "SameSite=Lax")
               );
             }
           });
