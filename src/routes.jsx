@@ -8,6 +8,7 @@ import BlogPage from "./pages/BlogPage";
 import KisahPelanggan from "./pages/KisahPelangganPage";
 import PanduanSistemManajemenAntrean from "./pages/PanduanSistemManajemenAntrean";
 import ManagedServices from "./pages/ManagedServices";
+import ExaqueManagedService from "./pages/ExaqueManagedService";
 
 
 // --- Helper untuk membuat struktur route ---
@@ -42,10 +43,10 @@ export const routes = [
     description: "Pertanyaan yang sering diajukan seputar produk dan layanan.",
     keywords: "tanya jawab, help, bantuan, cara kerja"
   }),
-  createRoute("/panduan-sistem-manajemen-antrean", <PanduanSistemManajemenAntrean />, {
-    title: "Panduan Sistem Manajemen Antrian Exaque",
-    description: "Sistem manajemen antrian membantu mengurangi waktu tunggu dan mengelola alur pelanggan. Pelajari cara kerja, manfaat, dan solusi yang tepat untuk bisnis Anda.",
-    keywords: "panduan, sistem antrean, manajemen antrean, queue management"
+  createRoute("/sistem-manajemen-antrian", <PanduanSistemManajemenAntrean />, {
+    title: "Sistem Manajemen Antrian: Pengertian, Cara Kerja, Manfaat, dan Penerapannya di Berbagai Industri",
+    description: "Pelajari sistem manajemen antrian, mulai dari pengertian, cara kerja, manfaat, fitur, hingga penerapannya di berbagai industri untuk meningkatkan kualitas layanan.",
+    keywords: "panduan, sistem antrian, manajemen antrian, queue management"
   }),
   createRoute("/blog", <BlogPage />, { title: "Blog", description: "Indeks artikel dan wawasan.", keywords: "blog, artikel" }),
   createRoute("/kisah-pelanggan", <KisahPelanggan  />, { title: "Kisah Pelanggan", description: "Daftar studi kasus klien.", keywords: "klien, portfolio" }),
@@ -54,9 +55,9 @@ export const routes = [
     description: "Pantau performa dan kualitas layanan setiap cabang melalui data serta laporan berkala dengan exaque managed branch performance.",
     keywords: "managed service, branch performance, perbankan, sla, csat"
   }),
-  createRoute("/exaque-managed-service", <ManagedServices />, {
-    title: "Exaque Managed Branch Performance",
-    description: "Pantau performa dan kualitas layanan setiap cabang melalui data serta laporan berkala dengan exaque managed branch performance.",
-    keywords: "managed service, branch performance, perbankan, sla, csat"
+  createRoute("/exaque-managed-service", <ExaqueManagedService />, {
+    title: "Exaque Managed Service",
+    description: "Performa cabang terpantau. Masalah layanan ditindaklanjuti dengan Exaque Managed Service.",
+    keywords: "exaque managed service, performa cabang, antrean, sla, monitoring cabang"
   }),
 ];

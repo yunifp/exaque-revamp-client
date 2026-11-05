@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 
 import Hero from "../components/common/Hero";
 import BussinessIntelligenceTeaser from "../components/bussinessintelligence/BussinessIntelligenceTeaser";
@@ -48,6 +49,11 @@ function BussinessIntelligence() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta
+        title="Business Intelligence & Analitik Antrean"
+        description="Ambil keputusan berbasis data akurat. Analisis data antrean dan performa layanan secara real-time dengan Business Intelligence Exaque."
+        url="https://exaque.com/business-intelligence"
+      />
       <Hero {...BussinessIntelligenceHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <BussinessIntelligenceTeaser />

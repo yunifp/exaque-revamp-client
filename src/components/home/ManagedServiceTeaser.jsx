@@ -70,17 +70,16 @@ const ManagedServiceTeaser = () => {
             Cukup berlangganan, cabang <span className="text-[#A9023A]">terukur & terkelola.</span>
           </h2>
           <p className="text-[clamp(16px,1.5vw,17.5px)] leading-[1.75] text-[#5a5a63] max-w-[540px] mb-[36px]">
-            Dengan Exaque Managed Service, anda bisa memantau performa dan kualitas layanan setiap cabang melalui data serta laporan berkala. Tanpa investasi perangkat yang rumit, tanpa kekhawatiran soal pemeliharaan, dan tetap dalam kendali Anda.
+            Dengan Exaque <em>Managed Service</em>, anda bisa memantau performa dan kualitas layanan setiap cabang melalui data serta laporan berkala. Tanpa investasi perangkat yang rumit, tanpa kekhawatiran soal pemeliharaan, dan tetap dalam kendali Anda.
           </p>
           <div className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-4">
-            <Link to="/kontak" className="contact-btn relative inline-flex items-center justify-center gap-2.5 no-underline font-bold text-base leading-none py-[18px] px-[34px] rounded-full transition-all duration-200 whitespace-nowrap overflow-hidden text-white bg-gradient-to-br from-[#C8104F] via-[#A9023A] to-[#7d012b] shadow-[0_12px_28px_rgba(169,2,58,0.38),0_0_0_4px_rgba(169,2,58,0.12)] hover:-translate-y-[3px] hover:shadow-[0_16px_34px_rgba(169,2,58,0.5),0_0_0_6px_rgba(169,2,58,0.16)] w-full sm:w-auto">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-[19px] h-[19px] shrink-0"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
-              Hubungi tim kami
-            </Link>
-            {/* <Link to="/exaque-managed-service" className="relative inline-flex items-center justify-center gap-2.5 no-underline font-semibold text-base leading-none py-[14px] px-[26px] rounded-full transition-all duration-200 whitespace-nowrap text-[#A9023A] bg-white border-2 border-[#E3B7C6] hover:bg-[#fbeef2] hover:border-[#A9023A] hover:-translate-y-0.5 group w-full sm:w-auto">
+            <Link
+              to="/exaque-managed-service"
+              className="contact-btn relative inline-flex items-center justify-center gap-2.5 no-underline font-bold text-base leading-none py-[18px] px-[34px] rounded-full transition-all duration-200 whitespace-nowrap overflow-hidden text-white bg-gradient-to-br from-[#C8104F] via-[#A9023A] to-[#7d012b] shadow-[0_12px_28px_rgba(169,2,58,0.38),0_0_0_4px_rgba(169,2,58,0.12)] hover:-translate-y-[3px] hover:shadow-[0_16px_34px_rgba(169,2,58,0.5),0_0_0_6px_rgba(169,2,58,0.16)] group w-full sm:w-auto"
+            >
               Pelajari lebih lanjut
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="w-[19px] h-[19px] shrink-0 transition-transform duration-200 group-hover:translate-x-1"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-            </Link> */}
+            </Link>
           </div>
         </div>
         

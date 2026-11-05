@@ -7,8 +7,7 @@ const MegaMenuSolusi = () => {
   const location = useLocation();
 
   const isManagedServices =
-    location.pathname === "/exaque-managed-service" ||
-    location.pathname === "/exaque-managed-branch-performance";
+    location.pathname === "/exaque-managed-service";
 
   const handleSectionClick = (e, sectionId) => {
     if (isManagedServices) {
@@ -16,7 +15,7 @@ const MegaMenuSolusi = () => {
       window.history.pushState(null, "", `${location.pathname}#${sectionId}`);
       const el = document.getElementById(sectionId);
       if (el) {
-        const navOffset = 70;
+        const navOffset = 80;
         const elementPosition = el.getBoundingClientRect().top;
         const offsetPosition = elementPosition + window.pageYOffset - navOffset;
         window.scrollTo({
@@ -37,18 +36,24 @@ const MegaMenuSolusi = () => {
           <li onMouseEnter={() => setActivePlatform("qmatic-orchestra")}>
             <MegaMenuItem
               to="/qmatic-orchestra"
+              className={
+                activePlatform === "qmatic-orchestra"
+                  ? "!border-l-accent"
+                  : ""
+              }
               title="Qmatic Orchestra"
               description="Solusi enterprise yang dibuat untuk organisasi dengan persyaratan kompleks, beberapa titik layanan, dan cabang."
             />
           </li>
           <li onMouseEnter={() => setActivePlatform("managed-service")}>
             <MegaMenuItem
-              to="#"
-              onClick={(e) => {
-                e.preventDefault();
-                setActivePlatform("managed-service");
-              }}
-              title="Managed branch performance"
+              to="/exaque-managed-service"
+              className={
+                activePlatform === "managed-service"
+                  ? "!border-l-accent"
+                  : ""
+              }
+              title="Exaque Managed Service"
               description="Performa setiap cabang terukur dan terkelola, dibayar per cabang aktif."
             />
           </li>
@@ -110,28 +115,28 @@ const MegaMenuSolusi = () => {
             }`}
           >
             <MegaMenuItem
-              to="/exaque-managed-branch-performance#performa-jaringan-cabang"
-              onClick={(e) => handleSectionClick(e, "performa-jaringan-cabang")}
-              title="Performa Jaringan Cabang"
-              description="Waktu tunggu dan pemenuhan SLA setiap cabang, terpantau dari kantor pusat."
+              to="/exaque-managed-service#cara-kerja"
+              onClick={(e) => handleSectionClick(e, "cara-kerja")}
+              title="Cara Kerja"
+              description="Pemantauan indikator harian, validasi penyebab, dan rekomendasi tindak lanjut operasional."
             />
             <MegaMenuItem
-              to="/exaque-managed-branch-performance#kepuasan-nasabah-terukur"
-              onClick={(e) => handleSectionClick(e, "kepuasan-nasabah-terukur")}
-              title="Kepuasan Nasabah Terukur"
-              description="CSAT harian per cabang, menggantikan survei berkala yang mahal dan terlambat."
+              to="/exaque-managed-service#cakupan-layanan"
+              onClick={(e) => handleSectionClick(e, "cakupan-layanan")}
+              title="Cakupan Layanan"
+              description="Platform & technical support, business support, serta pelaporan dan review berkala."
             />
             <MegaMenuItem
-              to="/exaque-managed-branch-performance#layanan-nasabah-prioritas"
-              onClick={(e) => handleSectionClick(e, "layanan-nasabah-prioritas")}
-              title="Layanan Nasabah Prioritas"
-              description="Petugas tahu saat nasabah prioritas tiba, tanpa melanggar kebijakan TI."
+              to="/exaque-managed-service#model-biaya"
+              onClick={(e) => handleSectionClick(e, "model-biaya")}
+              title="Model Biaya"
+              description="Struktur biaya terprediksi berbasis cabang aktif dengan transparansi penuh."
             />
             <MegaMenuItem
-              to="/exaque-managed-branch-performance#standardisasi-layanan-lintas-cabang"
-              onClick={(e) => handleSectionClick(e, "standardisasi-layanan-lintas-cabang")}
-              title="Standardisasi Layanan Lintas Cabang"
-              description="Satu standar pengalaman di seluruh jaringan, termasuk pasca-merger atau rebranding."
+              to="/exaque-managed-service#faq"
+              onClick={(e) => handleSectionClick(e, "faq")}
+              title="FAQ"
+              description="Jawaban atas pertanyaan umum seputar implementasi, integrasi, dan layanan."
             />
           </div>
         </div>

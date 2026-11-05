@@ -3,6 +3,7 @@ import axios from "axios";
 import { FaTimes, FaPaperPlane, FaSync } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
 import agentImg from "../../assets/agent2.png";
+import coraAvatar from "../../assets/cora-avatar.png";
 
 const ChatbotFloating = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,15 +18,24 @@ const ChatbotFloating = () => {
     pertanyaan_komersial: false
   });
   
-  const initialMessages = [
+  const pathname = typeof window !== "undefined" ? window.location.pathname : "";
+  const isManagedServicePage =
+    pathname === "/exaque-managed-service" ||
+    pathname === "/exaque-managed-branch-performance";
+
+  const getInitialMessages = () => [
     {
       role: "model",
-      text: "Halo! Saya CORA, AI Assistant Exaque. Mau mulai dari mana?",
-      options: ["Lihat solusi kami", "Studi kasus sektor saya", "Jadwalkan demo"]
+      text: isManagedServicePage
+        ? "Halo! Saya CORA, AI Assistant Exaque. Ingin tahu lebih lanjut tentang Exaque Managed Service atau jadwalkan assessment cabang?"
+        : "Halo! Saya CORA, AI Assistant Exaque. Mau mulai dari mana?",
+      options: isManagedServicePage
+        ? ["Tentang Managed Service", "Jadwalkan Assessment Cabang", "Lihat solusi lainnya"]
+        : ["Lihat solusi kami", "Exaque Managed Service", "Studi kasus sektor saya", "Jadwalkan demo"]
     },
   ];
 
-  const [messages, setMessages] = useState(initialMessages);
+  const [messages, setMessages] = useState(getInitialMessages);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef(null);
@@ -43,7 +53,7 @@ const ChatbotFloating = () => {
       halaman_dilihat: typeof window !== "undefined" ? window.location.pathname : "",
       pertanyaan_komersial: false
     });
-    setMessages(initialMessages);
+    setMessages(getInitialMessages());
     setInput("");
   };
 
@@ -87,6 +97,37 @@ const ChatbotFloating = () => {
               text: "Solusi Enterprise Customer Journey Management kami terbukti membantu banyak perusahaan. Mau saya kirim brosur lengkap + opsi jadwal demo ke email kantor Anda?",
               isForm: true
            }]);
+        }, 500);
+      } else if (option === "Exaque Managed Service" || option === "Tentang Managed Service") {
+        setLeadData(prev => ({ ...prev, niat: "Exaque Managed Service" }));
+        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(false);
+          setMessages(prev => [...prev, {
+            role: "model",
+            text: "Dengan **Exaque Managed Service**, Anda cukup berlangganan untuk memantau dan mengelola performa layanan setiap cabang aktif tanpa investasi perangkat rumit.\n\n• **Pantau Indikator Harian**: Waktu tunggu, durasi layanan, & deviasi SLA.\n• **Validasi & Rekomendasi**: Menelaah akar masalah operasional bersama PIC cabang & kawal perbaikan.\n• **Dukungan Penuh**: Platform & technical support, business support, dan SLA tertulis.\n\nMau kami bantu jadwalkan **Assessment Cabang** atau kirimkan overview lengkap ke email kantor Anda?",
+            isForm: true
+          }]);
+          setChatPhase("CAPTURE");
+        }, 600);
+      } else if (option === "Jadwalkan Assessment Cabang") {
+        setLeadData(prev => ({ ...prev, niat: "Assessment Cabang Managed Service" }));
+        setChatPhase("CAPTURE");
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            role: "model",
+            text: "Untuk menjadwalkan **Assessment Cabang** Exaque Managed Service, silakan lengkapi kontak kantor Anda di bawah ini agar tim spesialis kami dapat segera menghubungi Anda.",
+            isForm: true
+          }]);
+        }, 500);
+      } else if (option === "Lihat solusi lainnya") {
+        setChatPhase("WELCOME");
+        setTimeout(() => {
+          setMessages(prev => [...prev, {
+            role: "model",
+            text: "Exaque menyediakan platform Enterprise Customer Journey Management terintegrasi (Qmatic Orchestra, Antrean Virtual, Mobile Ticket, dll). Mau mulai dari mana?",
+            options: ["Lihat solusi kami", "Studi kasus sektor saya", "Jadwalkan demo"]
+          }]);
         }, 500);
       }
     } else if (chatPhase === "DISCOVERY") {
@@ -206,8 +247,8 @@ const ChatbotFloating = () => {
           {/* Header */}
           <div className="bg-accent p-4 flex justify-between items-center text-white">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden border border-white/20">
-                <img src="/logo.png" alt="CORA" className="w-7 h-7 object-contain" />
+              <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center overflow-hidden border-2 border-white/40 shadow-sm shrink-0">
+                <img src={coraAvatar} alt="CORA" className="w-full h-full object-cover" />
               </div>
               <div>
                 <h3 className="font-bold text-lg leading-tight">CORA</h3>
@@ -235,7 +276,7 @@ const ChatbotFloating = () => {
               >
                 {msg.role !== "user" && (
                   <div className="w-8 h-8 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center flex-shrink-0 overflow-hidden">
-                    <img src="/logo.png" alt="CORA" className="w-5 h-5 object-contain" />
+                    <img src={coraAvatar} alt="CORA" className="w-full h-full object-cover" />
                   </div>
                 )}
                 <div className={`flex flex-col max-w-[85%] ${msg.role === "user" ? "items-end" : "items-start"}`}>
@@ -313,7 +354,7 @@ const ChatbotFloating = () => {
             {isLoading && !messages[messages.length - 1]?.isForm && (
               <div className="flex justify-start items-end gap-2">
                 <div className="w-8 h-8 rounded-full bg-white border border-gray-200 shadow-sm flex items-center justify-center flex-shrink-0 overflow-hidden">
-                  <img src="/logo.png" alt="CORA" className="w-5 h-5 object-contain" />
+                  <img src={coraAvatar} alt="CORA" className="w-full h-full object-cover" />
                 </div>
                 <div className="px-4 py-3 rounded-2xl bg-white border border-gray-200 shadow-sm rounded-bl-none flex gap-1">
                   <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>

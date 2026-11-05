@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 
 import Hero from "../components/common/Hero";
 import productHeroImage from "../assets/hero-keamanan-sistem.webp";
@@ -19,6 +20,11 @@ function PesanOtomatis() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta
+        title="Keamanan Sistem & Arsitektur Enterprise"
+        description="Fungsionalitas enterprise untuk jutaan perjalanan pelanggan harian, tanpa kompromi pada stabilitas, kepatuhan GDPR, dan keamanan data."
+        url="https://exaque.com/keamanan-sistem"
+      />
       <Hero {...productHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <KeamananSistemFeature />

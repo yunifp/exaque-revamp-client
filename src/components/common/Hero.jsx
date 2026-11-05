@@ -8,6 +8,7 @@ function Hero({
   welcomeText = "Selamat Datang",
   title = "Judul Hero Default",
   subtitle = "Subtitel default yang menjelaskan inti dari bagian ini.",
+  titleClassName = "",
 
   // Gambar
   imageUrl,
@@ -178,7 +179,7 @@ function Hero({
       <div className="container mx-auto px-6 py-10">
         {!hideContent && (
           <div className={`${finalContentWidth} ${textAlign}`}>
-            {!isMinimalMode && (
+            {!isMinimalMode && welcomeText && (
               <span className="block text-lg font-medium mb-2">
                 {welcomeText}
               </span>
@@ -186,7 +187,9 @@ function Hero({
 
             <h1
               className={`font-bold leading-tight mb-6 ${
-                isMinimalMode
+                titleClassName
+                  ? titleClassName
+                  : isMinimalMode
                   ? "text-3xl md:text-4xl"
                   : "text-4xl md:text-5xl lg:text-7xl"
               }`}

@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 
 import Hero from "../components/common/Hero";
 import productHeroImage from "../assets/hero-integrasi.webp";
@@ -28,6 +29,11 @@ function PowerBI() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta
+        title="Integrasi Power BI Data Connect"
+        description="Buka insight mendalam performa layanan dan alur perjalanan pelanggan dengan menghubungkan sistem antrean Exaque ke Microsoft Power BI."
+        url="https://exaque.com/power-bi"
+      />
       <Hero {...productHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <IntegrasiPowerBITeaser />

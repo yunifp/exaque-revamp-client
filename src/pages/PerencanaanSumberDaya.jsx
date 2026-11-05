@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 
 import Hero from "../components/common/Hero";
 
@@ -28,6 +29,11 @@ function JanjiTemuDigital() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta
+        title="Perencanaan Sumber Daya & Kapasitas Layanan"
+        description="Alokasikan staf dan sumber daya secara optimal untuk menangani lonjakan pengunjung dan waktu tunggu pelanggan dengan solusi Exaque."
+        url="https://exaque.com/perencanaan-sumber-daya"
+      />
       <Hero {...productHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
         <PSDNumberedTeaser1 />

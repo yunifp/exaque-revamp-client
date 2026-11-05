@@ -27,14 +27,29 @@ const useApi = () => {
       config.headers = headers;
       const url = `${BASE_URL}${endpoint.startsWith("/") ? endpoint : "/" + endpoint}`;
       const response = await fetch(url, config);
-      const data = await response.json();
+      const contentType = response.headers.get("content-type");
+      let data = null;
+
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        if (!response.ok) {
+          throw new Error(
+            response.status === 503 || response.status === 504
+              ? "Server sedang sibuk memproses (timeout). Data Anda kemungkinan besar sudah tersimpan di dashboard."
+              : `Terjadi kesalahan server (HTTP ${response.status}).`
+          );
+        }
+        data = { message: text };
+      }
 
       if (!response.ok) {
         if (response.status === 401) {
             localStorage.removeItem("token"); // Hapus token kedaluwarsa
             // Opsional: window.location.href = "/login"; 
         }
-        throw new Error(data.message || "Terjadi kesalahan");
+        throw new Error(data?.message || data?.meta?.message || "Terjadi kesalahan");
       }
 
       setLoading(false);

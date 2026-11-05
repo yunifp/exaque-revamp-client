@@ -8,6 +8,7 @@ const REQUEST_TYPES = [
  { id: "Permintaan Demo", label: "Permintaan Demo" },
  { id: "Bantuan Teknis", label: "Bantuan Teknis" },
  { id: "Lokasi Kantor Exaque", label: "Lokasi Kantor" },
+ { id: "Managed Service Request", label: "Managed Service" },
 ];
 
 const PermintaanPelanggan = () => {

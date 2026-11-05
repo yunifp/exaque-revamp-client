@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 
 import Hero from "../components/common/Hero";
 import IntegrasiHeroImage from "../assets/hero-integrasi.webp";
@@ -28,6 +29,11 @@ function integrasi() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta
+        title="Integrasi Sistem Antrean"
+        description="Hubungkan alat favorit Anda dengan Exaque. Solusi integrasi populer untuk mengoptimalkan alur kerja dan pengalaman pelanggan."
+        url="https://exaque.com/integrasi"
+      />
       <Hero {...MobileTicketHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <IntegrasiCard />

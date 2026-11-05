@@ -6,13 +6,13 @@ import CallToAction from "../components/common/CallToAction";
 import { FiClock, FiUsers, FiMonitor, FiSmartphone, FiCalendar, FiBell, FiCheckCircle, FiActivity, FiBriefcase, FiHeart, FiShoppingBag, FiDollarSign, FiCheck, FiSettings, FiShield } from "react-icons/fi";
 
 const tocData = [
-  { id: "apa-itu-manajemen-antrean", label: "Apa Itu Manajemen Antrean?" },
-  { id: "apa-itu-sistem-manajemen-antrean", label: "Apa Itu Sistem Manajemen Antrean?" },
-  { id: "manfaat-sistem-manajemen-antrean", label: "Manfaat Sistem Manajemen Antrean" },
+  { id: "apa-itu-manajemen-antrean", label: "Apa Itu Manajemen Antrian?" },
+  { id: "apa-itu-sistem-manajemen-antrean", label: "Apa Itu Sistem Manajemen Antrian?" },
+  { id: "manfaat-sistem-manajemen-antrean", label: "Manfaat Sistem Manajemen Antrian" },
   { id: "industri-yang-diuntungkan", label: "Industri Apa Saja yang Paling Diuntungkan?" },
-  { id: "bagaimana-cara-kerja", label: "Bagaimana Cara Kerja Sistem Manajemen Antrean?" },
-  { id: "cara-memilih", label: "Cara Memilih Sistem Manajemen Antrean Terbaik" },
-  { id: "harga", label: "Harga Sistem Manajemen Antrean" },
+  { id: "bagaimana-cara-kerja", label: "Bagaimana Cara Kerja Sistem Manajemen Antrian?" },
+  { id: "cara-memilih", label: "Cara Memilih Sistem Manajemen Antrian Terbaik" },
+  { id: "harga", label: "Harga Sistem Manajemen Antrian" },
 ];
 
 export default function PanduanSistemManajemenAntrean() {
@@ -48,10 +48,17 @@ export default function PanduanSistemManajemenAntrean() {
   };
 
   const heroProps = {
-    welcomeText: "Panduan",
-    title: "Sistem Manajemen Antrean",
+    welcomeText: "",
+    title: (
+      <>
+        Sistem Manajemen Antrian:
+        <br className="hidden sm:inline" /> Pengertian, Cara Kerja, Manfaat, dan Penerapannya di Berbagai Industri.
+      </>
+    ),
     subtitle: "Mengelola pengalaman pelanggan saat mengantre dan waktu tunggu merupakan hal penting untuk memberikan pengalaman terbaik bagi pelanggan.",
     imageUrl: heroBg,
+    contentWidth: "w-full max-w-5xl mx-auto",
+    titleClassName: "text-2xl sm:text-3xl md:text-4xl lg:text-[44px] font-bold leading-tight mb-6",
     textAlign: "text-center mx-auto",
     buttonJustify: "justify-center"
   };
@@ -59,9 +66,9 @@ export default function PanduanSistemManajemenAntrean() {
   return (
     <div className="bg-white min-h-screen">
       <SEOMeta 
-        title="Panduan Lengkap Sistem Manajemen Antrian Exaque" 
-        description="Pelajari apa itu sistem manajemen antrean, manfaatnya, dan cara memilih solusi antrean terbaik sesuai kebutuhan bisnis Anda." 
-        url="https://exaque.com/panduan-sistem-manajemen-antrean" 
+        title="Sistem Manajemen Antrian: Pengertian, Cara Kerja, Manfaat, dan Penerapannya di Berbagai Industri" 
+        description="Pelajari sistem manajemen antrian, mulai dari pengertian, cara kerja, manfaat, fitur, hingga penerapannya di berbagai industri untuk meningkatkan kualitas layanan." 
+        url="https://exaque.com/sistem-manajemen-antrian" 
       />
       <Hero {...heroProps} />
 

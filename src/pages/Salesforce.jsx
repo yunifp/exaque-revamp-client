@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 
 import Hero from "../components/common/Hero";
 import productHeroImage from "../assets/hero-integrasi.webp";
@@ -34,6 +35,11 @@ function Salesforce() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta
+        title="Integrasi Salesforce & Sistem Antrean"
+        description="Integrasikan Salesforce dengan sistem manajemen antrean Exaque untuk workflow yang terpadu dan pengalaman pelanggan yang dipersonalisasi."
+        url="https://exaque.com/salesforce"
+      />
       <Hero {...productHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
         <IntegrasiSalesforceTeaser />

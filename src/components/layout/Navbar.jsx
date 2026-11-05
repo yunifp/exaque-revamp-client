@@ -244,10 +244,10 @@ const FloatingSearchBar = ({ isOpen, onClose }) => {
 };
 
 const managedMenuSections = [
-  { id: "performa-jaringan-cabang", label: "Performa Jaringan Cabang" },
-  { id: "layanan-nasabah-prioritas", label: "Layanan Nasabah Prioritas" },
-  { id: "kepuasan-nasabah-terukur", label: "Kepuasan Nasabah Terukur" },
-  { id: "standardisasi-layanan-lintas-cabang", label: "Standardisasi Layanan Lintas Cabang" },
+  { id: "cara-kerja", label: "Cara Kerja" },
+  { id: "cakupan-layanan", label: "Cakupan Layanan" },
+  { id: "model-biaya", label: "Model Biaya" },
+  { id: "faq", label: "FAQ" },
 ];
 
 export default function Navbar() {
@@ -447,7 +447,7 @@ export default function Navbar() {
                   return (
                     <a
                       key={sec.id}
-                      href={`/exaque-managed-branch-performance#${sec.id}`}
+                      href={`/exaque-managed-service#${sec.id}`}
                       onClick={(e) => handleManagedSectionClick(e, sec.id)}
                       className={`py-5 text-xs xl:text-[12.5px] 2xl:text-[13px] font-medium transition-colors cursor-pointer whitespace-nowrap relative ${
                         isActive
@@ -577,7 +577,7 @@ export default function Navbar() {
                   {managedMenuSections.map((sec) => (
                     <a
                       key={sec.id}
-                      href={`/exaque-managed-branch-performance#${sec.id}`}
+                      href={`/exaque-managed-service#${sec.id}`}
                       onClick={(e) => handleManagedSectionClick(e, sec.id)}
                       className={`block py-3 px-4 text-base font-medium border-b border-subtle hover:border-l-4 hover:border-accent hover:text-accent focus:outline-none cursor-pointer ${
                         activeSection === sec.id
@@ -713,11 +713,13 @@ export default function Navbar() {
                         >
                           Qmatic Orchestra
                         </Link>
-                        <div
-                          className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} cursor-default`}
+                        <Link
+                          onClick={handleMobileLinkClick}
+                          to="/exaque-managed-service"
+                          className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
                         >
-                          Managed branch performance
-                        </div>
+                          Exaque Managed Service
+                        </Link>
                       </MobileNavLinkDropdown>
                     </div>
                     <div>
@@ -769,36 +771,36 @@ export default function Navbar() {
                         </Link>
                       </MobileNavLinkDropdown>
                       <MobileNavLinkDropdown
-                        title="Solusi Managed Branch Performance"
+                        title="Solusi Exaque Managed Service"
                         isScrolled={isScrolled}
                       >
                         <Link
-                          onClick={(e) => handleManagedSectionMobile(e, "performa-jaringan-cabang")}
-                          to="/exaque-managed-branch-performance#performa-jaringan-cabang"
+                          to="/exaque-managed-service#cara-kerja"
+                          onClick={(e) => handleManagedSectionMobile(e, "cara-kerja")}
                           className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
                         >
-                          Performa Jaringan Cabang
+                          Cara Kerja
                         </Link>
                         <Link
-                          onClick={(e) => handleManagedSectionMobile(e, "kepuasan-nasabah-terukur")}
-                          to="/exaque-managed-branch-performance#kepuasan-nasabah-terukur"
+                          to="/exaque-managed-service#cakupan-layanan"
+                          onClick={(e) => handleManagedSectionMobile(e, "cakupan-layanan")}
                           className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
                         >
-                          Kepuasan Nasabah Terukur
+                          Cakupan Layanan
                         </Link>
                         <Link
-                          onClick={(e) => handleManagedSectionMobile(e, "layanan-nasabah-prioritas")}
-                          to="/exaque-managed-branch-performance#layanan-nasabah-prioritas"
+                          to="/exaque-managed-service#model-biaya"
+                          onClick={(e) => handleManagedSectionMobile(e, "model-biaya")}
                           className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
                         >
-                          Layanan Nasabah Prioritas
+                          Model Biaya
                         </Link>
                         <Link
-                          onClick={(e) => handleManagedSectionMobile(e, "standardisasi-layanan-lintas-cabang")}
-                          to="/exaque-managed-branch-performance#standardisasi-layanan-lintas-cabang"
+                          to="/exaque-managed-service#faq"
+                          onClick={(e) => handleManagedSectionMobile(e, "faq")}
                           className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
                         >
-                          Standardisasi Layanan Lintas Cabang
+                          FAQ
                         </Link>
                       </MobileNavLinkDropdown>
                     </div>
@@ -843,10 +845,10 @@ export default function Navbar() {
                     </Link>
                     <Link
                       onClick={handleMobileLinkClick}
-                      to="/panduan-sistem-manajemen-antrean"
+                      to="/sistem-manajemen-antrian"
                       className={`block px-4 py-2 text-base ${mobileDropdownLinkClass} focus:outline-none`}
                     >
-                      Panduan Sistem Antrean
+                      Sistem Manajemen Antrian
                     </Link>
                   </MobileNavLinkDropdown>
                 </div>

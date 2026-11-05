@@ -1,21 +1,41 @@
+Options -Indexes
+
+<IfModule mod_dir.c>
+  # 1. Matikan auto-redirect DirectorySlash agar Apache/LiteSpeed tidak melakukan 301 redirect ke trailing slash pada direktori prerender
+  DirectorySlash Off
+  DirectoryIndex index.html
+</IfModule>
+
 <IfModule mod_rewrite.c>
   # Mengaktifkan mesin penulisan ulang (rewrite engine)
   RewriteEngine On
 
-  # 1. KANONIKALISASI: Redirect www ke non-www dan paksa HTTPS
+  # 2. KANONIKALISASI: Redirect www ke non-www dan paksa HTTPS
   RewriteCond %{HTTP_HOST} ^www\.exaque\.com$ [NC]
   RewriteRule ^(.*)$ https://exaque.com/$1 [L,R=301]
   
   RewriteCond %{HTTPS} off
   RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-  # Aturan 1: Jangan lakukan apa pun jika permintaan adalah untuk file yang sudah ada
-  RewriteCond %{REQUEST_FILENAME} !-f
-  
-  # Aturan 2: Jangan lakukan apa pun jika permintaan adalah untuk direktori yang sudah ada
-  RewriteCond %{REQUEST_FILENAME} !-d
+  # 3. KANONIKALISASI TRAILING SLASH:
+  # Redirect URL yang memiliki trailing slash ke URL tanpa trailing slash (kecuali direktori aset dan root)
+  RewriteCond %{REQUEST_URI} !^/(assets|10th|hubfs|video|admin)/
+  RewriteCond %{REQUEST_URI} ^/(.+)/+$
+  RewriteRule ^ /%1 [R=301,L]
 
-  # Aturan 3: Arahkan semua rute lainnya ke index.html
+  # 4. Sajikan file statis fisik langsung jika ada (css, js, gambar, xml, txt, dll)
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteRule ^ - [L]
+
+  # 5. PRIORITAS PRERENDER: Sajikan file .html statis jika ada (contoh: /sistem-manajemen-antrian -> sistem-manajemen-antrian.html)
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^(.*)$ $1.html [L]
+
+  # 6. PRIORITAS PRERENDER FOLDER: Sajikan folder/index.html jika ada (contoh: /sistem-manajemen-antrian -> sistem-manajemen-antrian/index.html)
+  RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
+  RewriteRule ^(.*)$ $1/index.html [L]
+
+  # 7. Fallback SPA untuk rute dinamis React Router
   RewriteRule ^ index.html [L]
 </IfModule>
 

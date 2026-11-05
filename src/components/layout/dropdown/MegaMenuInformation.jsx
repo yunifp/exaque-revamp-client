@@ -26,9 +26,9 @@ const MegaMenuInformasi = () => {
             description="Butuh bantuan? Cek pertanyaan dan jawaban umum di sini"
           />
           <MegaMenuItem
-            to="/panduan-sistem-manajemen-antrean"
-            title="Panduan Sistem Manajemen Antrean"
-            description="Panduan komprehensif tentang cara memilih dan menerapkan sistem antrean"
+            to="/sistem-manajemen-antrian"
+            title="Sistem Manajemen Antrian"
+            description="Panduan komprehensif tentang cara memilih dan menerapkan sistem antrian"
           />
         </div>
       </div>

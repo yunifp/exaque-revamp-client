@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 import Hero from "../components/common/Hero";
 
 import productHeroImage from "../assets/hero-umpan-balik-pelanggan.webp";
@@ -20,11 +21,16 @@ function UmpanBalikPelanggan() {
     button1Text: "Permintaan Demo",
     button1Link: "/demo",
     button2Text: "Konsultasi",
-    button2Link: "/konsultasi",
+    button2Link: "/kontak",
   };
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta
+        title="Survei Umpan Balik Pelanggan & CSAT"
+        description="Kumpulkan feedback dan evaluasi kepuasan pelanggan secara real-time di setiap titik layanan dengan modul umpan balik pelanggan Exaque."
+        url="https://exaque.com/umpan-balik"
+      />
       <Hero {...productHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <UmpanBalikPelangganTeaser />

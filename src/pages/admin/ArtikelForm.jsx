@@ -117,6 +117,10 @@ const ArtikelForm = () => {
     if (name === "title" && !isEditMode) {
       const slugValue = value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)+/g, "");
       setFormData(prev => ({ ...prev, title: value, slug: slugValue }));
+    } else if (name === "slug") {
+      // Hilangkan spasi dan garis miring di awal/akhir
+      const cleanSlug = value.toLowerCase().replace(/[^a-z0-9-/]+/g, "-");
+      setFormData(prev => ({ ...prev, slug: cleanSlug }));
     } else {
       setFormData(prev => ({ ...prev, [name]: value }));
     }
@@ -151,9 +155,16 @@ const ArtikelForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Pastikan slug bersih dari garis miring di awal/akhir
+    const sanitizedSlug = (formData.slug || "")
+      .trim()
+      .replace(/^\/+|\/+$/g, "")
+      .replace(/[^a-z0-9-]+/g, "-")
+      .replace(/(^-|-$)+/g, "");
+
     const data = new FormData();
     data.append("title", formData.title);
-    data.append("slug", formData.slug);
+    data.append("slug", sanitizedSlug);
     data.append("content", formData.content);
     data.append("status", formData.status);
     data.append("author_name", formData.author_name);
@@ -249,6 +260,12 @@ const ArtikelForm = () => {
                   name="slug"
                   value={formData.slug}
                   onChange={handleChange}
+                  onBlur={() => {
+                    setFormData(prev => ({
+                      ...prev,
+                      slug: (prev.slug || "").trim().replace(/^\/+|\/+$/g, "").replace(/[^a-z0-9-]+/g, "-").replace(/(^-|-$)+/g, "")
+                    }));
+                  }}
                   className="bg-transparent flex-1 ml-1 text-sm text-txt-primary focus:outline-none"
                 />
               </div>

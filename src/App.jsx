@@ -29,6 +29,7 @@ import TentangKami from "./pages/TentangKami";
 import PanduanSistemManajemenAntrean from "./pages/PanduanSistemManajemenAntrean";
 import ArchivedRedirect from "./pages/ArchivedRedirect";
 import ManagedServices from "./pages/ManagedServices";
+import ExaqueManagedService from "./pages/ExaqueManagedService";
 
 import Solusi from "./pages/Solution";
 import ManajemenAntrean from "./pages/ManajemenAntrean";
@@ -73,7 +74,7 @@ const ScrollToTop = ({ children }) => {
       const scrollToTarget = () => {
         const element = document.getElementById(targetId);
         if (element) {
-          const navOffset = 70;
+          const navOffset = 80;
           const elementPosition = element.getBoundingClientRect().top;
           const offsetPosition = elementPosition + window.pageYOffset - navOffset;
           window.scrollTo({
@@ -85,14 +86,16 @@ const ScrollToTop = ({ children }) => {
         return false;
       };
 
-      if (!scrollToTarget()) {
-        const timer1 = setTimeout(scrollToTarget, 100);
-        const timer2 = setTimeout(scrollToTarget, 350);
-        return () => {
-          clearTimeout(timer1);
-          clearTimeout(timer2);
-        };
-      }
+      // Run multiple attempts to handle dynamic layout and font/image loading
+      scrollToTarget();
+      const timer1 = setTimeout(scrollToTarget, 80);
+      const timer2 = setTimeout(scrollToTarget, 250);
+      const timer3 = setTimeout(scrollToTarget, 550);
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+        clearTimeout(timer3);
+      };
     } else {
       window.scrollTo(0, 0);
     }
@@ -103,11 +106,19 @@ const ScrollToTop = ({ children }) => {
 
 const MainLayout = () => {
   const { pathname } = useLocation();
+  const hideGlobalNavbar = pathname === "/exaque-managed-service";
   const hideFooter =
-    pathname === "/exaque-managed-service" ||
-    pathname === "/exaque-managed-branch-performance";
+    pathname === "/exaque-managed-branch-performance" ||
+    pathname === "/exaque-managed-service";
   return (
-    <> <Navbar /> <main> <Outlet /> <ChatbotFloating /> </main> {!hideFooter && <Footer />} </>
+    <>
+      {!hideGlobalNavbar && <Navbar />}
+      <main>
+        <Outlet />
+        <ChatbotFloating />
+      </main>
+      {!hideFooter && <Footer />}
+    </>
   );
 };
 
@@ -168,11 +179,12 @@ const App = () => {
               <Route path="/kisah-pelanggan/:slug" element={<DetailKisahPelanggan />} />
               <Route path="/blog" element={<BlogPage />} />
               <Route path="/blog/:slug" element={<DetailBlog />} />
-              <Route path="/faq" element={<Faq />} />
-              <Route path="/panduan-sistem-manajemen-antrean" element={<PanduanSistemManajemenAntrean />} />
+              <Route path="/sistem-manajemen-antrian" element={<PanduanSistemManajemenAntrean />} />
+              <Route path="/sistem-manajemen-antrean" element={<Navigate to="/sistem-manajemen-antrian" replace />} />
+              <Route path="/panduan-sistem-manajemen-antrean" element={<Navigate to="/sistem-manajemen-antrian" replace />} />
               <Route path="/archived/*" element={<ArchivedRedirect />} />
-              <Route path="/exaque-managed-service" element={<ManagedServices />} />
               <Route path="/exaque-managed-branch-performance" element={<ManagedServices />} />
+              <Route path="/exaque-managed-service" element={<ExaqueManagedService />} />
             </Route>
               <Route path="*" element={<NotFoundPage />} />
 

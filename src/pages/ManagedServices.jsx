@@ -128,6 +128,20 @@ const ManagedServices = () => {
     }
   }, [location.hash, location.pathname]);
 
+  const [utmParams, setUtmParams] = useState({});
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const searchParams = new URLSearchParams(window.location.search);
+      const utms = {};
+      ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"].forEach((param) => {
+        const val = searchParams.get(param);
+        if (val) utms[param] = val;
+      });
+      setUtmParams(utms);
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -139,17 +153,38 @@ const ManagedServices = () => {
     setErrorMsg("");
 
     try {
+      let compiledMessage = "[Layanan]: Managed Branch Performance\n[Notifikasi]: Kirim ke WID\n";
+      if (formData.user_persona) {
+        compiledMessage += `[Estimasi Jumlah Cabang]: ${formData.user_persona}\n`;
+      }
+      if (formData.message) {
+        compiledMessage += `[Tantangan Operasional]: ${formData.message}\n`;
+      }
+      if (Object.keys(utmParams).length > 0) {
+        compiledMessage += `[Parameter UTM]: ${Object.entries(utmParams).map(([k, v]) => `${k}=${v}`).join(", ")}\n`;
+      }
+
       const payload = {
         ...formData,
-        last_name: "",
-        service_needed: "Permintaan Assessment",
+        last_name: formData.last_name || formData.first_name || "-",
+        service_needed: "Managed Service Request",
+        message: compiledMessage.trim(),
       };
 
       const response = await request("/inquiries", "POST", payload);
 
       if (response) {
+        if (typeof window !== "undefined" && typeof window.gtag === "function") {
+          window.gtag("event", "generate_lead", {
+            event_category: "Engagement",
+            event_label: "Jadwalkan Diskusi Managed Service",
+            value: 1,
+            currency: "IDR",
+          });
+        }
+
         setSuccessMsg(
-          "Terima kasih! Permintaan assessment Anda telah terkirim. Tim kami akan segera menghubungi Anda."
+          "Terima kasih! Permintaan Managed Service & diskusi Anda telah terkirim. Tim kami akan segera menghubungi Anda."
         );
         setFormData({
           first_name: "",
@@ -330,8 +365,11 @@ const ManagedServices = () => {
         </section>
 
         {/* 3. BUKTI KLIEN */}
-        <div className="py-[44px] border-y border-[#DEE1E3]">
+        <div className="py-[44px] border-y border-[#DEE1E3] bg-[#FAF7F8]">
           <div className="max-w-[1180px] mx-auto px-6 max-sm:px-4">
+            <blockquote className="text-[1.2rem] md:text-[1.4rem] font-bold text-[#1C1A1B] text-center mb-[18px]">
+              “Mobile Ticket berjalan di seluruh jaringan gerai Indosat sejak 2023, tanpa insiden.”
+            </blockquote>
             <p className="text-[0.95rem] text-[#6F696C] text-center mb-[18px]">Jaringan cabang yang sudah bekerja sama dengan Exaque</p>
             <div className="grid grid-cols-8 gap-[16px] max-lg:grid-cols-4 max-sm:grid-cols-2">
               {clientLogos.map((client) => (
@@ -358,7 +396,7 @@ const ManagedServices = () => {
             <div>
               <span className="block text-[#A9023A] font-semibold text-[0.95rem] mb-[14px]">Titik buta jaringan cabang</span>
               <h2 className="text-[clamp(1.75rem,3.4vw,2.6rem)] max-w-[22ch] font-bold tracking-[-0.01em] leading-[1.08]" style={{ fontVariationSettings: '"wdth" 122' }}>Kantor pusat menetapkan standar layanan. Cabang yang menjalankannya. Di antara keduanya, hampir tidak ada data.</h2>
-              <p className="text-[1.18rem] text-[#4A4548] max-w-[60ch] mt-[22px]">Ketika satu cabang melampaui target waktu tunggu, kantor pusat biasanya baru tahu dari komplain nasabah atau laporan manual yang datang sebulan kemudian. Saat itu, masalahnya sudah menjadi pengalaman nasabah.</p>
+              <p className="text-[1.18rem] text-[#4A4548] max-w-[60ch] mt-[22px]">Ketika satu cabang melampaui target waktu tunggu, kantor pusat biasanya baru tahu dari komplain nasabah atau laporan manual yang datang sebulan kemudian. Nasabah yang datang ke cabang adalah prospek paling matang, sehingga setiap <em>exception</em> yang terlewat adalah peluang yang terbuang.</p>
             </div>
             <div>
               <ul className="list-none m-0 p-0">
@@ -541,7 +579,7 @@ const ManagedServices = () => {
                   className="inline-block font-bold text-[#1C1A1B] text-[1.1rem] underline underline-offset-4 decoration-2 hover:text-[#A9023A] transition-colors"
                   style={{ fontVariationSettings: '"wdth" 116' }}
                 >
-                  Jadwalkan Assessment Cabang
+                  Jadwalkan <em>Assessment</em> Cabang
                 </a>
               </div>
             </div>
@@ -805,7 +843,7 @@ const ManagedServices = () => {
                   href="#form-lead"
                   className="inline-block font-bold text-[#1C1A1B] text-[1.1rem] underline underline-offset-4 decoration-2 hover:text-[#A9023A] transition-colors"
                 >
-                  Jadwalkan Assessment Cabang
+                  Jadwalkan <em>Assessment</em> Cabang
                 </a>
               </div>
             </div>
@@ -870,7 +908,7 @@ const ManagedServices = () => {
                   className="inline-block font-bold text-[#1C1A1B] text-[1.1rem] underline underline-offset-4 decoration-2 hover:text-[#A9023A] transition-colors"
                   style={{ fontVariationSettings: '"wdth" 116' }}
                 >
-                  Jadwalkan Assessment Cabang
+                  Jadwalkan <em>Assessment</em> Cabang
                 </a>
               </div>
             </div>
@@ -1120,7 +1158,7 @@ const ManagedServices = () => {
                   href="#form-lead"
                   className="inline-block font-bold text-[#1C1A1B] text-[1.1rem] underline underline-offset-4 decoration-2 hover:text-[#A9023A] transition-colors"
                 >
-                  Jadwalkan Assessment Cabang
+                  Jadwalkan <em>Assessment</em> Cabang
                 </a>
               </div>
             </div>
@@ -1131,16 +1169,16 @@ const ManagedServices = () => {
         <section className="py-[104px] max-md:py-[72px] border-b border-[#DEE1E3]" id="keamanan">
           <div className="max-w-[1180px] mx-auto px-6 max-sm:px-4">
             <span className="block text-[#A9023A] font-semibold text-[0.95rem] mb-[14px]">Keamanan &amp; tata kelola</span>
-            <h2 className="text-[clamp(1.75rem,3.4vw,2.6rem)] max-w-[22ch] font-bold tracking-[-0.01em] leading-[1.08]" style={{ fontVariationSettings: '"wdth" 122' }}>Dirancang untuk lolos review TI, keamanan, dan kepatuhan Anda.</h2>
+            <h2 className="text-[clamp(1.75rem,3.4vw,2.6rem)] max-w-[22ch] font-bold tracking-[-0.01em] leading-[1.08]" style={{ fontVariationSettings: '"wdth" 122' }}>Dirancang untuk lolos <em>review</em> TI, keamanan, dan kepatuhan Anda.</h2>
             <div className="grid grid-cols-2 gap-x-[48px] mt-[44px] max-md:grid-cols-1">
               <div className="py-[24px] border-t border-[#DEE1E3]">
-                <h3 className="text-[1.15rem] leading-[1.25] font-bold tracking-[-0.01em] mb-[6px]">Jaringan terisolasi</h3><p className="text-[#4A4548]"><em>Router</em> dan konektivitas disuplai Exaque, terpisah penuh dari jaringan internal Anda.</p>
+                <h3 className="text-[1.15rem] leading-[1.25] font-bold tracking-[-0.01em] mb-[6px]">Arsitektur Air-Gapped</h3><p className="text-[#4A4548]">Perangkat berjalan di koneksi internet independen, <strong>100% terpisah dari jaringan lokal dan perbankan klien</strong>.</p>
               </div>
               <div className="py-[24px] border-t border-[#DEE1E3]">
-                <h3 className="text-[1.15rem] leading-[1.25] font-bold tracking-[-0.01em] mb-[6px]">Perangkat terkunci</h3><p className="text-[#4A4548]">Tablet SecureBranch hanya menjalankan aplikasi Exaque, dengan kamera dinonaktifkan.</p>
+                <h3 className="text-[1.15rem] leading-[1.25] font-bold tracking-[-0.01em] mb-[6px]">Perangkat SecureBranch Terkunci</h3><p className="text-[#4A4548]">Tablet SecureBranch terkunci (<em>kiosk mode</em>), kamera dinonaktifkan, dan hanya menjalankan satu aplikasi Exaque.</p>
               </div>
               <div className="py-[24px] border-t border-[#DEE1E3]">
-                <h3 className="text-[1.15rem] leading-[1.25] font-bold tracking-[-0.01em] mb-[6px]"><em>Platform enterprise</em></h3><p className="text-[#4A4548]">Dibangun di atas Qmatic Orchestra, platform <em>customer journey</em> yang digunakan institusi keuangan di berbagai negara.</p>
+                <h3 className="text-[1.15rem] leading-[1.25] font-bold tracking-[-0.01em] mb-[6px]">Platform <em>enterprise</em></h3><p className="text-[#4A4548]">Dibangun di atas Qmatic Orchestra, platform <em>customer journey</em> yang digunakan institusi keuangan di berbagai negara.</p>
               </div>
               <div className="py-[24px] border-t border-[#DEE1E3]">
                 <h3 className="text-[1.15rem] leading-[1.25] font-bold tracking-[-0.01em] mb-[6px]">Kepemilikan &amp; audit data</h3><p className="text-[#4A4548]">Hak akses, kepemilikan data, dan retensi disepakati sebelum implementasi.</p>
@@ -1324,31 +1362,44 @@ const ManagedServices = () => {
           <div className="max-w-[1180px] mx-auto px-6 max-sm:px-4">
             <span className="block text-[#A9023A] font-semibold text-[0.95rem] mb-[14px]">Pertanyaan yang sering diajukan</span>
             <h2 className="text-[clamp(1.75rem,3.4vw,2.6rem)] max-w-[22ch] font-bold tracking-[-0.01em] leading-[1.08]" style={{ fontVariationSettings: '"wdth" 122' }}>Sebelum Anda menjadwalkan <em>assessment</em>.</h2>
-            <div className="max-w-[820px] mt-[40px] border-t-[2px] border-[#1C1A1B]">
-              <details className="border-b border-[#DEE1E3]">
-                <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Apa bedanya dengan membeli sistem atau perangkat sendiri?</summary>
-                <div className="pb-[22px] text-[#6F696C]"><p>Anda tidak membeli perangkat. Anda berlangganan hasil: layanan cabang yang berjalan, performa yang terukur setiap bulan, dan SLA tertulis.</p></div>
-              </details>
-              <details className="border-b border-[#DEE1E3]" open>
-                <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Apakah sistem yang sudah ada harus diganti?</summary>
-                <div className="pb-[22px] text-[#6F696C]"><p>Tidak serta-merta. <em>Assessment</em> menentukan apa yang dipertahankan, apa yang dipindahkan, dan urutannya. Sistem lama baru dinonaktifkan setelah <em>pilot</em> stabil.</p></div>
-              </details>
-              <details className="border-b border-[#DEE1E3]">
-                <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Berapa biayanya?</summary>
-                <div className="pb-[22px] text-[#6F696C]"><p>Biaya utama dihitung per cabang aktif per periode, ditambah biaya infrastruktur sesuai pemakaian dan biaya implementasi per fase. Nominalnya ditetapkan setelah <em>assessment</em>.</p></div>
-              </details>
-              <details className="border-b border-[#DEE1E3]">
-                <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Bagaimana data nasabah dijaga?</summary>
-                <div className="pb-[22px] text-[#6F696C]"><p>Lokasi data, hak akses, retensi, dan skema audit disepakati sebelum implementasi dan mengikuti standar institusi Anda. Perangkat Exaque berjalan di jaringan terpisah dari jaringan internal Anda.</p></div>
-              </details>
-              <details className="border-b border-[#DEE1E3]">
-                <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Untuk institusi seperti apa layanan ini?</summary>
-                <div className="pb-[22px] text-[#6F696C]"><p>Institusi dengan jaringan cabang di perbankan, multifinance, asuransi, dan telekomunikasi.</p></div>
-              </details>
-              <details className="border-b border-[#DEE1E3]">
-                <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Berapa lama sampai berjalan?</summary>
-                <div className="pb-[22px] text-[#6F696C]"><p>Bergantung pada jumlah cabang. Jadwal <em>pilot</em> dan <em>rollout</em> dituangkan dalam rencana transisi hasil <em>assessment</em>.</p></div>
-              </details>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-[48px] mt-[40px] items-start">
+              <div className="border-t-[2px] border-[#1C1A1B]">
+                <details className="border-b border-[#DEE1E3]">
+                  <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Apa bedanya dengan membeli sistem atau perangkat sendiri?</summary>
+                  <div className="pb-[22px] text-[#6F696C]"><p>Anda tidak membeli perangkat. Anda berlangganan hasil: layanan cabang yang berjalan, performa yang terukur setiap bulan, dan SLA tertulis.</p></div>
+                </details>
+                <details className="border-b border-[#DEE1E3]" open>
+                  <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Apakah sistem yang sudah ada harus diganti?</summary>
+                  <div className="pb-[22px] text-[#6F696C]"><p>Tidak serta-merta. <em>Assessment</em> menentukan apa yang dipertahankan, apa yang dipindahkan, dan urutannya. Sistem lama baru dinonaktifkan setelah <em>pilot</em> stabil.</p></div>
+                </details>
+                <details className="border-b border-[#DEE1E3]">
+                  <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Apakah perangkat terhubung ke jaringan internal kami?</summary>
+                  <div className="pb-[22px] text-[#6F696C]"><p>Tidak. Perangkat Exaque beroperasi dengan arsitektur air-gapped menggunakan internet independen, 100% terpisah dari jaringan lokal dan perbankan klien. Tablet SecureBranch juga terkunci khusus (kiosk mode) dengan kamera dinonaktifkan.</p></div>
+                </details>
+                <details className="border-b border-[#DEE1E3]">
+                  <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Apakah memakai AI?</summary>
+                  <div className="pb-[22px] text-[#6F696C]"><p>Saat ini analitik dan deteksi <em>exception</em> layanan cabang berjalan berbasis aturan (<em>rule-based</em>) yang transparan dan dapat diaudit. Analitik lanjutan dan <em>machine learning</em> terarah ada dalam <em>roadmap</em> pengembangan kami.</p></div>
+                </details>
+              </div>
+
+              <div className="border-t-[2px] border-[#1C1A1B] max-md:border-t-0">
+                <details className="border-b border-[#DEE1E3]">
+                  <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Berapa biayanya?</summary>
+                  <div className="pb-[22px] text-[#6F696C]"><p>Biaya utama dihitung per cabang aktif per periode, ditambah biaya infrastruktur sesuai pemakaian dan biaya implementasi per fase. Nominalnya ditetapkan setelah <em>assessment</em>.</p></div>
+                </details>
+                <details className="border-b border-[#DEE1E3]">
+                  <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Bagaimana data nasabah dijaga?</summary>
+                  <div className="pb-[22px] text-[#6F696C]"><p>Lokasi data, hak akses, retensi, dan skema audit disepakati sebelum implementasi dan mengikuti standar institusi Anda. Perangkat Exaque berjalan di jaringan terpisah dari jaringan internal Anda.</p></div>
+                </details>
+                <details className="border-b border-[#DEE1E3]">
+                  <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Untuk institusi seperti apa layanan ini?</summary>
+                  <div className="pb-[22px] text-[#6F696C]"><p>Institusi dengan jaringan cabang di perbankan, <em>multifinance</em>, asuransi, dan telekomunikasi.</p></div>
+                </details>
+                <details className="border-b border-[#DEE1E3]">
+                  <summary className="cursor-pointer list-none p-[22px_44px_22px_0] font-semibold text-[1.08rem] relative">Berapa lama sampai berjalan?</summary>
+                  <div className="pb-[22px] text-[#6F696C]"><p>Bergantung pada jumlah cabang. Jadwal <em>pilot</em> dan <em>rollout</em> dituangkan dalam rencana transisi hasil <em>assessment</em>.</p></div>
+                </details>
+              </div>
             </div>
           </div>
         </section>
@@ -1360,7 +1411,7 @@ const ManagedServices = () => {
           <div className="max-w-[1180px] mx-auto px-6 max-sm:px-4 grid grid-cols-[5fr_6fr] gap-[64px] items-start max-md:grid-cols-1 max-md:gap-[36px]">
             <div>
               <h2 className="text-[clamp(1.75rem,3.4vw,2.6rem)] max-w-[22ch] font-bold tracking-[-0.01em] leading-[1.08]" style={{ fontVariationSettings: '"wdth" 122' }}>Sudah saatnya mengukur apa yang selama ini dibiarkan terjadi.</h2>
-              <p className="text-[1.18rem] text-white/90 max-w-[60ch] mt-[22px]">Mari jadwalkan <em>assessment</em> singkat. Kami akan memetakan proses di cabang Anda saat ini, merancang target layanan ideal, lalu menyajikan bukti konsep (<em>PoC</em>) tanpa biaya setup awal.</p>
+              <p className="text-[1.18rem] text-white/90 max-w-[60ch] mt-[22px]">Mari jadwalkan <em>assessment</em> singkat. Kami akan memetakan proses di cabang Anda saat ini, merancang target layanan ideal, lalu menyajikan bukti konsep (<em>PoC</em>) tanpa biaya <em>setup</em> awal.</p>
             </div>
             <form id="form-lead" noValidate onSubmit={handleSubmit} className="bg-white p-[32px] rounded-[10px] text-[#1C1A1B] max-sm:p-[24px_20px]">
               <div className="mb-[24px]">
@@ -1409,7 +1460,7 @@ const ManagedServices = () => {
                 </div>
               </div>
               <button type="submit" disabled={loading} className="mt-[24px] w-full bg-[#1C1A1B] text-white font-bold h-[48px] rounded-[6px] text-[1rem] cursor-pointer hover:bg-[#3A3638] disabled:opacity-50">
-                {loading ? "Mengirim..." : "Kirim permintaan"}
+                {loading ? "Mengirim..." : "Jadwalkan diskusi Managed Service"}
               </button>
             </form>
           </div>

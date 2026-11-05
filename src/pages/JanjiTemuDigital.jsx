@@ -1,4 +1,5 @@
 import React from "react";
+import SEOMeta from "../components/common/SEOMeta";
 
 import Hero from "../components/common/Hero";
 import JanjiTeaser from "../components/janjitemu/JanjiTeaser";
@@ -22,6 +23,11 @@ function JanjiTemuDigital() {
 
   return (
     <div className="bg-primary min-h-screen">
+      <SEOMeta
+        title="Sistem Janji Temu Digital Enterprise"
+        description="Optimalkan perencanaan dan penjadwalan janji temu online pelanggan Anda secara mudah dan efisien dengan modul janji temu Qmatic Orchestra Exaque."
+        url="https://exaque.com/janji-temu"
+      />
       <Hero {...productHeroProps} />
       <div className="py-8 md:py-20 space-y-15 md:space-y-20">
       <JanjiTeaser />

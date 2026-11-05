@@ -24,7 +24,8 @@ const DetailBlog = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const detailRes = await request(`/articles/${slug}`);
+        const cleanSlug = (slug || "").trim().replace(/^\/+|\/+$/g, "");
+        const detailRes = await request(`/articles/${cleanSlug}`);
         const rawDetail = detailRes.data;
         const articleData = rawDetail?.data || rawDetail;
         setPost(articleData);
