@@ -30,6 +30,7 @@ import PanduanSistemManajemenAntrean from "./pages/PanduanSistemManajemenAntrean
 import ArchivedRedirect from "./pages/ArchivedRedirect";
 import ManagedServices from "./pages/ManagedServices";
 import ExaqueManagedService from "./pages/ExaqueManagedService";
+import PesanCeo from "./pages/PesanCeo";
 
 import Solusi from "./pages/Solution";
 import ManajemenAntrean from "./pages/ManajemenAntrean";
@@ -185,6 +186,9 @@ const App = () => {
               <Route path="/archived/*" element={<ArchivedRedirect />} />
               <Route path="/exaque-managed-branch-performance" element={<ManagedServices />} />
               <Route path="/exaque-managed-service" element={<ExaqueManagedService />} />
+              <Route path="/pesan-dari-ceo" element={<PesanCeo />} />
+              <Route path="/pesan-ceo" element={<Navigate to="/pesan-dari-ceo" replace />} />
+              <Route path="/surat-ceo" element={<Navigate to="/pesan-dari-ceo" replace />} />
             </Route>
               <Route path="*" element={<NotFoundPage />} />
 

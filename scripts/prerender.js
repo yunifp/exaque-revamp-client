@@ -46,6 +46,8 @@ const staticPages = [
   { path: '/dukungan-perangkat-lunak', file: '/src/pages/DukunganPerangkatLunak.jsx' },
   { path: '/exaque-managed-branch-performance', file: '/src/pages/ManagedServices.jsx' },
   { path: '/exaque-managed-service', file: '/src/pages/ExaqueManagedService.jsx' },
+  { path: '/pesan-dari-ceo', file: '/src/pages/PesanCeo.jsx', defaultTitle: 'A Decade of Trust | Pesan Founder & CEO Exaque' },
+  { path: '/pesan-ceo', file: '/src/pages/PesanCeo.jsx', defaultTitle: 'A Decade of Trust | Pesan Founder & CEO Exaque' },
   { path: '/blog', file: '/src/pages/BlogPage.jsx' },
   { path: '/kisah-pelanggan', file: '/src/pages/KisahPelangganPage.jsx' },
 ];

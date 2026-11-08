@@ -297,8 +297,10 @@ export default function Navbar() {
 
   const navVisibilityClass = "translate-y-0 opacity-100";
 
-  // Force solid navbar (like scrolled state) on Managed Services page
-  const applySolidStyle = isScrolled || isManagedServicesPage;
+  const isHomePage = location.pathname === "/";
+
+  // Force solid navbar (like scrolled state) on Managed Services and Home page
+  const applySolidStyle = isScrolled || isManagedServicesPage || isHomePage;
 
   const navClass = applySolidStyle
     ? "bg-primary text-txt-primary shadow-lg"

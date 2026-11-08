@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 import { FaTimes, FaPaperPlane, FaSync } from "react-icons/fa";
 import ReactMarkdown from "react-markdown";
@@ -18,10 +19,42 @@ const ChatbotFloating = () => {
     pertanyaan_komersial: false
   });
   
-  const pathname = typeof window !== "undefined" ? window.location.pathname : "";
+  const location = useLocation();
+  const pathname = location.pathname;
   const isManagedServicePage =
     pathname === "/exaque-managed-service" ||
     pathname === "/exaque-managed-branch-performance";
+
+  // CORA floating button visibility state
+  const [isVisible, setIsVisible] = useState(() => isManagedServicePage);
+
+  useEffect(() => {
+    if (isManagedServicePage) {
+      setIsVisible(true);
+      return;
+    }
+
+    const checkVisibility = () => {
+      const section = document.getElementById("managed-service");
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        // Tampil ketika user telah scroll mencapai section managed-service
+        setIsVisible(rect.top <= window.innerHeight * 0.75);
+      } else {
+        // Jika bukan beranda dan tidak ada section managed-service, tampilkan default
+        setIsVisible(pathname !== "/");
+      }
+    };
+
+    checkVisibility();
+    window.addEventListener("scroll", checkVisibility, { passive: true });
+    window.addEventListener("resize", checkVisibility, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", checkVisibility);
+      window.removeEventListener("resize", checkVisibility);
+    };
+  }, [pathname, isManagedServicePage]);
 
   const getInitialMessages = () => [
     {
@@ -231,8 +264,13 @@ const ChatbotFloating = () => {
       {/* Floating Button */}
       <button
         onClick={toggleChat}
-        className={`fixed bottom-0 right-0 w-44 h-44 md:w-56 md:h-56 lg:w-72 lg:h-72 flex justify-center items-end hover:scale-105 transition-transform z-50 origin-bottom-right group ${isOpen ? 'hidden' : ''}`}
+        className={`fixed bottom-0 right-0 w-44 h-44 md:w-56 md:h-56 lg:w-72 lg:h-72 flex justify-center items-end hover:scale-105 transition-all duration-300 z-50 origin-bottom-right group ${
+          isOpen || !isVisible
+            ? "opacity-0 pointer-events-none translate-y-8 scale-90"
+            : "opacity-100 pointer-events-auto translate-y-0 scale-100"
+        }`}
         aria-label="Tanya CORA"
+        tabIndex={isVisible && !isOpen ? 0 : -1}
       >
         {/* Chat Bubble Pointer */}
         <div className="absolute top-4 -left-4 md:top-8 md:-left-2 lg:top-12 lg:left-4 bg-white text-accent font-bold text-xs md:text-sm px-4 py-2 rounded-2xl rounded-br-none shadow-[0_4px_15px_rgba(0,0,0,0.15)] border border-gray-100 animate-bounce whitespace-nowrap group-hover:bg-gray-50 transition-colors">
