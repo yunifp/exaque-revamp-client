@@ -9,7 +9,7 @@ import pakRicoImg from "../../assets/pak-rico.jpg";
  * - Baris 2: Video 10 Tahun Exaque (kiri) & Headline + CTA (kanan)
  */
 export default function Hero({
-  videoSrc = "https://youtu.be/Gih9XVwkOAs",
+  videoSrc = "https://youtu.be/cWdT_1GB778",
   thumbnailSrc,
   ctaLink,
   buttonText,
@@ -47,20 +47,18 @@ export default function Hero({
     : null;
   const thumbnailUrl = thumbnailSrc || defaultThumbnail;
 
-  // Cek apakah tanggal sudah mencapai 10 November 2026 (WIB)
-  // Sebelum tanggal 10: "Tonton Teaser"
-  // Mulai tanggal 10 dst: "Tonton Full Podcast"
-  const isFullPodcast = (() => {
+  // Default tombol adalah "Tonton Full Podcast" karena video utama sudah berganti menjadi full podcast
+  const isTeaserMode = (() => {
     try {
       const params = new URLSearchParams(window.location.search);
-      if (params.get("podcast") === "full") return true;
-      if (params.get("podcast") === "teaser") return false;
-    } catch (err) {}
-    const releaseDate = new Date("2026-11-10T00:00:00+07:00");
-    return new Date().getTime() >= releaseDate.getTime();
+      return params.get("podcast") === "teaser";
+    } catch (err) {
+      return false;
+    }
   })();
 
-  const computedButtonText = buttonText || (isFullPodcast ? "Tonton Full Podcast" : "Tonton Teaser");
+  const computedButtonText =
+    buttonText || (isTeaserMode ? "Tonton Teaser Podcast" : "Tonton Full Podcast");
 
   // Link tujuan CTA
   const targetCtaLink = ctaLink || "https://10anniversary.exaque.com/";
@@ -405,10 +403,37 @@ export default function Hero({
                         alt="Thumbnail Exaque 10th Anniversary Podcast"
                         className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                         loading="lazy"
+                        onLoad={(e) => {
+                          const target = e.currentTarget;
+                          // YouTube mengembalikan gambar placeholder abu-abu 120x90 jika thumbnail belum dipublikasikan
+                          if (target.naturalWidth <= 120 && ytId) {
+                            if (!target.dataset.fallback) {
+                              target.dataset.fallback = "hq";
+                              target.src = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+                              return;
+                            }
+                            if (target.dataset.fallback === "hq") {
+                              target.dataset.fallback = "podcast";
+                              target.src =
+                                "https://img.youtube.com/vi/Gih9XVwkOAs/maxresdefault.jpg";
+                              return;
+                            }
+                          }
+                        }}
                         onError={(e) => {
-                          if (ytId && !e.currentTarget.dataset.fallback) {
-                            e.currentTarget.dataset.fallback = "1";
-                            e.currentTarget.src = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+                          const target = e.currentTarget;
+                          if (!target.dataset.fallback) {
+                            target.dataset.fallback = "hq";
+                            if (ytId) {
+                              target.src = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+                              return;
+                            }
+                          }
+                          if (target.dataset.fallback === "hq") {
+                            target.dataset.fallback = "podcast";
+                            target.src =
+                              "https://img.youtube.com/vi/Gih9XVwkOAs/maxresdefault.jpg";
+                            return;
                           }
                         }}
                       />
@@ -438,8 +463,8 @@ export default function Hero({
                 EXAQUE 10TH ANNIVERSARY PODCAST
               </span>
               <h2 className="text-2xl sm:text-3xl lg:text-[2.65rem] xl:text-[2.9rem] font-extrabold leading-[1.18] tracking-tight text-gray-900">
-                Teknologi Semakin Canggih.{" "}
-                <span className="text-[#A8023A]">Apakah Pelayanan Semakin Baik?</span>
+                Masa Depan <br className="hidden sm:inline" />
+                <span className="text-[#A8023A]">Pelayanan Pelanggan</span>
               </h2>
               <p className="mt-3.5 sm:mt-4 text-base sm:text-[1.05rem] leading-[1.7] text-gray-600 max-w-[48ch]">
                 Dari sistem antrean hingga Customer Experience dan AI. Simak

@@ -423,12 +423,19 @@ export default function Navbar() {
           <div className="flex h-16 items-center justify-between">
             <div className={`flex-shrink-0 flex items-center ${isManagedServicesPage ? "mr-4 xl:mr-8 2xl:mr-10" : ""}`}>
               <div className={`flex items-center ${isManagedServicesPage ? "gap-2.5 md:gap-3.5" : "gap-4 md:gap-6"}`}>
-                <Link to="/" className="flex items-center" aria-label="Beranda Exaque">
+                <a
+                  href="https://10anniversary.exaque.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center transition-transform duration-200 hover:scale-105"
+                  aria-label="Perayaan 10 Tahun Exaque - Kunjungi Microsite"
+                  title="Perayaan 10 Tahun Exaque (10anniversary.exaque.com)"
+                >
                   <AnimatedLogo10th
                     isSolid={applySolidStyle}
                     size={isManagedServicesPage ? "small" : "normal"}
                   />
-                </Link>
+                </a>
                 <div className={`w-px bg-gray-400/30 ${isManagedServicesPage ? "h-6 md:h-7" : "h-8 md:h-10"}`}></div>
                 <Link to="/" className="flex items-center">
                   <img

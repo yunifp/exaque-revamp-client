@@ -35,9 +35,9 @@ const ContactFormCTA = ({ initialTab = "demo", title = "Dapatkan Demo Produk", s
     first_name: "",
     last_name: "",
     email: "",
+    phone_number: "",
     company: "",
     job_title: "",
-    user_persona: "",
     message: "",
   });
 
@@ -73,9 +73,9 @@ const ContactFormCTA = ({ initialTab = "demo", title = "Dapatkan Demo Produk", s
           first_name: "",
           last_name: "",
           email: "",
+          phone_number: "",
           company: "",
           job_title: "",
-          user_persona: "",
           message: "",
         });
       }
@@ -175,18 +175,33 @@ const ContactFormCTA = ({ initialTab = "demo", title = "Dapatkan Demo Produk", s
                   </div>
                 </div>
 
-                <div>
-                  <label className="block text-sm text-gray-600 mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
-                  />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm text-gray-600 mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm text-gray-600 mb-2">
+                      Nomor Telepon
+                    </label>
+                    <input
+                      type="tel"
+                      name="phone_number"
+                      required
+                      value={formData.phone_number}
+                      onChange={handleChange}
+                      className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -213,26 +228,6 @@ const ContactFormCTA = ({ initialTab = "demo", title = "Dapatkan Demo Produk", s
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors"
                   />
-                </div>
-
-                <div>
-                  <label className="block text-sm text-gray-600 mb-2">
-                    Apa yang paling tepat menggambarkan anda ?
-                  </label>
-                  <select
-                    name="user_persona"
-                    value={formData.user_persona}
-                    onChange={handleChange}
-                    className="w-full border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent transition-colors bg-white"
-                  >
-                    <option value="">Pilih salah satu...</option>
-                    <option value="C-Level Executive">C-Level Executive</option>
-                    <option value="Manager Operasional">
-                      Manager Operasional
-                    </option>
-                    <option value="IT Professional">IT Professional</option>
-                    <option value="Lainnya">Lainnya</option>
-                  </select>
                 </div>
 
                 <div>
