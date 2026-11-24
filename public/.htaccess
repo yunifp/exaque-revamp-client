@@ -35,6 +35,16 @@ Options -Indexes
   RewriteCond %{DOCUMENT_ROOT}/$1/index.html -f
   RewriteRule ^(.*)$ $1/index.html [L]
 
+  # 6b. CRAWLER FALLBACK UNTUK SOSIAL MEDIA (WhatsApp, LinkedIn, Facebook, Twitter, dll)
+  # Jika file statis artikel/kisah belum sempat di-generate/upload, arahkan bot ke share.php agar meta tags & gambar hero terbaca akurat
+  RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit|WhatsApp|LinkedInBot|Twitterbot|TelegramBot|Slackbot|SkypeUriPreview|meta-externalagent) [NC]
+  RewriteCond %{REQUEST_URI} ^/blog/(.+) [NC]
+  RewriteRule ^blog/(.*)$ share.php?type=blog&slug=$1 [L,QSA]
+
+  RewriteCond %{HTTP_USER_AGENT} (facebookexternalhit|WhatsApp|LinkedInBot|Twitterbot|TelegramBot|Slackbot|SkypeUriPreview|meta-externalagent) [NC]
+  RewriteCond %{REQUEST_URI} ^/kisah-pelanggan/(.+) [NC]
+  RewriteRule ^kisah-pelanggan/(.*)$ share.php?type=story&slug=$1 [L,QSA]
+
   # 7. Fallback SPA untuk rute dinamis React Router
   RewriteRule ^ index.html [L]
 </IfModule>

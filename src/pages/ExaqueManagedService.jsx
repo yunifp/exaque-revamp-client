@@ -1093,6 +1093,15 @@ const ExaqueManagedService = () => {
                 <p className="mt-3 text-[14px] sm:text-[15px] text-[#6A6568] leading-relaxed">
                   Menjaga kelancaran alur pelayanan pelanggan skala nasional dengan tingkat keandalan tinggi dan operasional yang stabil.
                 </p>
+                <div className="mt-5">
+                  <Link
+                    to="/blog/tiga-tahun-seluruh-gerai-nol-insiden-mobile-ticket-di-jaringan-layanan-nasional"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white border border-[#A9023A] text-[#A9023A] hover:bg-[#A9023A] hover:text-white font-semibold text-[14px] transition-all duration-200 shadow-2xs group"
+                  >
+                    <span>Selengkapnya baca artikel</span>
+                    <span className="text-base leading-none transition-transform duration-200 group-hover:translate-x-1">→</span>
+                  </Link>
+                </div>
               </div>
 
               {/* Baris Logo Klien Enterprise (Tanpa Angka Kinerja Klien) */}

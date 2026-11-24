@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import LogoRed from "../assets/logo-red.webp";
 import useApi from "../hooks/UseApi";
@@ -371,6 +371,15 @@ const ManagedServices = () => {
               “Mobile Ticket berjalan di seluruh jaringan gerai Indosat sejak 2023, tanpa insiden.”
             </blockquote>
             <p className="text-[0.95rem] text-[#6F696C] text-center mb-[18px]">Jaringan cabang yang sudah bekerja sama dengan Exaque</p>
+            <div className="text-center mb-[24px]">
+              <Link
+                to="/blog/tiga-tahun-seluruh-gerai-nol-insiden-mobile-ticket-di-jaringan-layanan-nasional"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white border border-[#A9023A] text-[#A9023A] hover:bg-[#A9023A] hover:text-white font-semibold text-[14px] transition-all duration-200 shadow-2xs group"
+              >
+                <span>Selengkapnya baca artikel</span>
+                <span className="text-base leading-none transition-transform duration-200 group-hover:translate-x-1">→</span>
+              </Link>
+            </div>
             <div className="grid grid-cols-8 gap-[16px] max-lg:grid-cols-4 max-sm:grid-cols-2">
               {clientLogos.map((client) => (
                 <div

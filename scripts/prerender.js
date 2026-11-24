@@ -206,7 +206,10 @@ async function prerender() {
             const fullUrl = `https://exaque.com${articlePath}`;
             const title = art.meta_title || `${art.title} - Exaque`;
             const description = art.meta_description || art.excerpt || 'Artikel wawasan Customer Journey Management dan sistem antrean dari Exaque.';
-            const imageUrl = art.featured_image_url ? (art.featured_image_url.startsWith('http') ? art.featured_image_url : `https://apirevamp.exaque.com${art.featured_image_url}`) : 'https://exaque.com/og-image.png';
+            const rawImageUrl = art.featured_image_url ? (art.featured_image_url.startsWith('http') ? art.featured_image_url : `https://apirevamp.exaque.com${art.featured_image_url}`) : 'https://exaque.com/og-image.png';
+            // Gunakan versi JPG 1200x630 untuk thumbnail sosial media (WhatsApp, LinkedIn, Facebook)
+            const ogImageUrl = rawImageUrl.endsWith('.webp') ? rawImageUrl.replace(/\.webp$/i, '-og.jpg') : rawImageUrl;
+            const ogImageType = ogImageUrl.endsWith('.jpg') ? 'image/jpeg' : (ogImageUrl.endsWith('.png') ? 'image/png' : 'image/webp');
 
             let pageHtml = baseTemplate;
             pageHtml = pageHtml.replace(/<title>.*?<\/title>/s, `<title>${title}</title>`);
@@ -216,17 +219,21 @@ async function prerender() {
             pageHtml = pageHtml.replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${sanitizeMetaContent(description)}" />`);
             pageHtml = pageHtml.replace(/<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${fullUrl}" />`);
             pageHtml = pageHtml.replace(/<meta property="og:type"[^>]*>/, `<meta property="og:type" content="article" />`);
-            pageHtml = pageHtml.replace(/<meta property="og:image"[^>]*>/, `<meta property="og:image" content="${imageUrl}" />`);
+            pageHtml = pageHtml.replace(/<meta property="og:image"[^>]*>/, 
+              `<meta property="og:image" content="${ogImageUrl}" />\n` +
+              `    <meta property="og:image:secure_url" content="${ogImageUrl}" />\n` +
+              `    <meta property="og:image:type" content="${ogImageType}" />`
+            );
             pageHtml = pageHtml.replace(/<meta name="twitter:title"[^>]*>/, `<meta name="twitter:title" content="${sanitizeMetaContent(title)}" />`);
             pageHtml = pageHtml.replace(/<meta name="twitter:description"[^>]*>/, `<meta name="twitter:description" content="${sanitizeMetaContent(description)}" />`);
-            pageHtml = pageHtml.replace(/<meta name="twitter:image"[^>]*>/, `<meta name="twitter:image" content="${imageUrl}" />`);
+            pageHtml = pageHtml.replace(/<meta name="twitter:image"[^>]*>/, `<meta name="twitter:image" content="${ogImageUrl}" />`);
 
             // Schema Article
             const articleSchema = {
               "@context": "https://schema.org",
               "@type": "Article",
               "headline": art.title,
-              "image": [imageUrl],
+              "image": [ogImageUrl],
               "datePublished": art.published_at || art.createdAt,
               "dateModified": art.updatedAt || art.published_at,
               "author": {
@@ -286,7 +293,9 @@ async function prerender() {
             const fullUrl = `https://exaque.com${storyPath}`;
             const title = `${story.title} | Kisah Pelanggan Exaque`;
             const description = story.meta_description || story.excerpt || `Pelajari kisah sukses implementasi solusi antrean Exaque di ${story.title}.`;
-            const imageUrl = story.featured_image_url ? (story.featured_image_url.startsWith('http') ? story.featured_image_url : `https://apirevamp.exaque.com${story.featured_image_url}`) : 'https://exaque.com/og-image.png';
+            const rawImageUrl = story.featured_image_url ? (story.featured_image_url.startsWith('http') ? story.featured_image_url : `https://apirevamp.exaque.com${story.featured_image_url}`) : 'https://exaque.com/og-image.png';
+            const ogImageUrl = rawImageUrl.endsWith('.webp') ? rawImageUrl.replace(/\.webp$/i, '-og.jpg') : rawImageUrl;
+            const ogImageType = ogImageUrl.endsWith('.jpg') ? 'image/jpeg' : (ogImageUrl.endsWith('.png') ? 'image/png' : 'image/webp');
 
             let pageHtml = baseTemplate;
             pageHtml = pageHtml.replace(/<title>.*?<\/title>/s, `<title>${title}</title>`);
@@ -295,7 +304,12 @@ async function prerender() {
             pageHtml = pageHtml.replace(/<meta property="og:title"[^>]*>/, `<meta property="og:title" content="${sanitizeMetaContent(title)}" />`);
             pageHtml = pageHtml.replace(/<meta property="og:description"[^>]*>/, `<meta property="og:description" content="${sanitizeMetaContent(description)}" />`);
             pageHtml = pageHtml.replace(/<meta property="og:url"[^>]*>/, `<meta property="og:url" content="${fullUrl}" />`);
-            pageHtml = pageHtml.replace(/<meta property="og:image"[^>]*>/, `<meta property="og:image" content="${imageUrl}" />`);
+            pageHtml = pageHtml.replace(/<meta property="og:image"[^>]*>/, 
+              `<meta property="og:image" content="${ogImageUrl}" />\n` +
+              `    <meta property="og:image:secure_url" content="${ogImageUrl}" />\n` +
+              `    <meta property="og:image:type" content="${ogImageType}" />`
+            );
+            pageHtml = pageHtml.replace(/<meta name="twitter:image"[^>]*>/, `<meta name="twitter:image" content="${ogImageUrl}" />`);
 
             const minimalContent = `
               <div class="container mx-auto px-6 py-12 max-w-4xl">

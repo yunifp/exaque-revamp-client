@@ -83,8 +83,10 @@ const DetailBlog = () => {
       };
 
       const description = post.meta_description || "Layanan Berbasis AI Exaque";
-      const imageUrl = getImageUrl(post.featured_image_url);
-      const currentUrl = window.location.href;
+      const rawImageUrl = getImageUrl(post.featured_image_url);
+      const ogImageUrl = rawImageUrl ? (rawImageUrl.endsWith('.webp') ? rawImageUrl.replace(/\.webp$/i, '-og.jpg') : rawImageUrl) : 'https://exaque.com/og-image.png';
+      const ogImageType = ogImageUrl.endsWith('.jpg') ? 'image/jpeg' : (ogImageUrl.endsWith('.png') ? 'image/png' : 'image/webp');
+      const currentUrl = window.location.href.split('#')[0];
 
       // Standard Meta Description
       setMetaTag('name', 'description', description);
@@ -92,7 +94,11 @@ const DetailBlog = () => {
       // Open Graph Tags (Untuk WhatsApp, Facebook, LinkedIn)
       setMetaTag('property', 'og:title', post.meta_title || post.title);
       setMetaTag('property', 'og:description', description);
-      setMetaTag('property', 'og:image', imageUrl);
+      setMetaTag('property', 'og:image', ogImageUrl);
+      setMetaTag('property', 'og:image:secure_url', ogImageUrl);
+      setMetaTag('property', 'og:image:type', ogImageType);
+      setMetaTag('property', 'og:image:width', '1200');
+      setMetaTag('property', 'og:image:height', '630');
       setMetaTag('property', 'og:url', currentUrl);
       setMetaTag('property', 'og:type', 'article');
 
@@ -100,7 +106,7 @@ const DetailBlog = () => {
       setMetaTag('name', 'twitter:card', 'summary_large_image');
       setMetaTag('name', 'twitter:title', post.meta_title || post.title);
       setMetaTag('name', 'twitter:description', description);
-      setMetaTag('name', 'twitter:image', imageUrl);
+      setMetaTag('name', 'twitter:image', ogImageUrl);
     }
   }, [post]);
 
